@@ -30,7 +30,7 @@ namespace POSales
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserAccount));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -100,9 +100,9 @@ namespace POSales
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(7, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 43);
+            this.label1.Size = new System.Drawing.Size(165, 43);
             this.label1.TabIndex = 0;
-            this.label1.Text = "User Setting";
+            this.label1.Text = "Налаштування користувачів";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // metroTabControl1
@@ -134,15 +134,15 @@ namespace POSales
             this.metroTabPage1.Controls.Add(this.label2);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 3;
+            this.metroTabPage1.HorizontalScrollbarSize = 2;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
             this.metroTabPage1.Size = new System.Drawing.Size(920, 410);
             this.metroTabPage1.TabIndex = 0;
-            this.metroTabPage1.Text = "Create Account";
+            this.metroTabPage1.Text = "Створити акаунт";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 3;
+            this.metroTabPage1.VerticalScrollbarSize = 2;
             // 
             // btnAccSave
             // 
@@ -155,7 +155,7 @@ namespace POSales
             this.btnAccSave.Name = "btnAccSave";
             this.btnAccSave.Size = new System.Drawing.Size(94, 35);
             this.btnAccSave.TabIndex = 31;
-            this.btnAccSave.Text = "Save";
+            this.btnAccSave.Text = "Зберегти";
             this.btnAccSave.UseVisualStyleBackColor = false;
             this.btnAccSave.Click += new System.EventHandler(this.btnAccSave_Click);
             // 
@@ -170,7 +170,7 @@ namespace POSales
             this.btnAccCancel.Name = "btnAccCancel";
             this.btnAccCancel.Size = new System.Drawing.Size(94, 35);
             this.btnAccCancel.TabIndex = 32;
-            this.btnAccCancel.Text = "Cancel";
+            this.btnAccCancel.Text = "Відмінити";
             this.btnAccCancel.UseVisualStyleBackColor = false;
             this.btnAccCancel.Click += new System.EventHandler(this.btnAccCancel_Click);
             // 
@@ -220,45 +220,45 @@ namespace POSales
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(95, 274);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 20);
+            this.label6.Size = new System.Drawing.Size(93, 20);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Full Name :";
+            this.label6.Text = "Повне ім\'я :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(95, 223);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 20);
+            this.label5.Size = new System.Drawing.Size(51, 20);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Role :";
+            this.label5.Text = "Роль :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(95, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(148, 20);
+            this.label4.Size = new System.Drawing.Size(152, 20);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Re-type Password :";
+            this.label4.Text = "Повторити пароль :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(95, 121);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 20);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Password :";
+            this.label3.Text = "Пароль :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(95, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 20);
+            this.label2.Size = new System.Drawing.Size(144, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Username :";
+            this.label2.Text = "Ім\'я користувача :";
             // 
             // metroTabPage2
             // 
@@ -275,15 +275,15 @@ namespace POSales
             this.metroTabPage2.Controls.Add(this.label8);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.HorizontalScrollbarSize = 3;
+            this.metroTabPage2.HorizontalScrollbarSize = 2;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
             this.metroTabPage2.Size = new System.Drawing.Size(920, 410);
             this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Change Password";
+            this.metroTabPage2.Text = "Змінити акаунт";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.VerticalScrollbarSize = 3;
+            this.metroTabPage2.VerticalScrollbarSize = 2;
             // 
             // lblUsername
             // 
@@ -315,7 +315,7 @@ namespace POSales
             this.btnPassSave.Name = "btnPassSave";
             this.btnPassSave.Size = new System.Drawing.Size(94, 35);
             this.btnPassSave.TabIndex = 33;
-            this.btnPassSave.Text = "Save";
+            this.btnPassSave.Text = "Зберегти";
             this.btnPassSave.UseVisualStyleBackColor = false;
             this.btnPassSave.Click += new System.EventHandler(this.btnPassSave_Click);
             // 
@@ -330,7 +330,7 @@ namespace POSales
             this.btnPassCancel.Name = "btnPassCancel";
             this.btnPassCancel.Size = new System.Drawing.Size(94, 35);
             this.btnPassCancel.TabIndex = 34;
-            this.btnPassCancel.Text = "Cancel";
+            this.btnPassCancel.Text = "Відмінити";
             this.btnPassCancel.UseVisualStyleBackColor = false;
             this.btnPassCancel.Click += new System.EventHandler(this.btnPassCancel_Click);
             // 
@@ -345,11 +345,11 @@ namespace POSales
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(110, 237);
+            this.label10.Location = new System.Drawing.Point(91, 237);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 20);
+            this.label10.Size = new System.Drawing.Size(191, 20);
             this.label10.TabIndex = 10;
-            this.label10.Text = "Re-type Password :";
+            this.label10.Text = "Підтвердження паролю :";
             // 
             // txtNPass
             // 
@@ -362,11 +362,11 @@ namespace POSales
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(110, 179);
+            this.label9.Location = new System.Drawing.Point(91, 179);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(126, 20);
+            this.label9.Size = new System.Drawing.Size(116, 20);
             this.label9.TabIndex = 8;
-            this.label9.Text = "New Password :";
+            this.label9.Text = "Новий пароль:";
             // 
             // txtCurPass
             // 
@@ -379,11 +379,11 @@ namespace POSales
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(110, 124);
+            this.label8.Location = new System.Drawing.Point(91, 124);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 20);
+            this.label8.Size = new System.Drawing.Size(145, 20);
             this.label8.TabIndex = 6;
-            this.label8.Text = "Current Password :";
+            this.label8.Text = "Поточний пароль :";
             // 
             // metroTabPage3
             // 
@@ -393,15 +393,15 @@ namespace POSales
             this.metroTabPage3.Controls.Add(this.dgvUser);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 3;
+            this.metroTabPage3.HorizontalScrollbarSize = 2;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
             this.metroTabPage3.Size = new System.Drawing.Size(920, 410);
             this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Activate/ UnActivate Account";
+            this.metroTabPage3.Text = "Активувати/Деактивувати акаунт";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 3;
+            this.metroTabPage3.VerticalScrollbarSize = 2;
             // 
             // gbUser
             // 
@@ -414,7 +414,7 @@ namespace POSales
             this.gbUser.Size = new System.Drawing.Size(890, 100);
             this.gbUser.TabIndex = 23;
             this.gbUser.TabStop = false;
-            this.gbUser.Text = "Password For UserName";
+            this.gbUser.Text = "Пароль для користувача";
             // 
             // pictureBox2
             // 
@@ -430,9 +430,9 @@ namespace POSales
             this.lblAccNote.AutoSize = true;
             this.lblAccNote.Location = new System.Drawing.Point(103, 27);
             this.lblAccNote.Name = "lblAccNote";
-            this.lblAccNote.Size = new System.Drawing.Size(453, 20);
+            this.lblAccNote.Size = new System.Drawing.Size(405, 20);
             this.lblAccNote.TabIndex = 0;
-            this.lblAccNote.Text = "To change the password for username, click Reset Password.";
+            this.lblAccNote.Text = "Щоб змініти пароль натисніть кнопку Змінити пароль";
             // 
             // btnResetPass
             // 
@@ -444,7 +444,7 @@ namespace POSales
             this.btnResetPass.Name = "btnResetPass";
             this.btnResetPass.Size = new System.Drawing.Size(222, 35);
             this.btnResetPass.TabIndex = 22;
-            this.btnResetPass.Text = "Reset Password...";
+            this.btnResetPass.Text = "Змінити пароль...";
             this.btnResetPass.UseVisualStyleBackColor = false;
             this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
@@ -454,11 +454,11 @@ namespace POSales
             this.btnProperties.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnProperties.FlatAppearance.BorderSize = 0;
             this.btnProperties.ForeColor = System.Drawing.Color.Black;
-            this.btnProperties.Location = new System.Drawing.Point(793, 246);
+            this.btnProperties.Location = new System.Drawing.Point(781, 246);
             this.btnProperties.Name = "btnProperties";
-            this.btnProperties.Size = new System.Drawing.Size(111, 35);
+            this.btnProperties.Size = new System.Drawing.Size(125, 35);
             this.btnProperties.TabIndex = 22;
-            this.btnProperties.Text = "Properties";
+            this.btnProperties.Text = "Налаштуваня";
             this.btnProperties.UseVisualStyleBackColor = false;
             this.btnProperties.Click += new System.EventHandler(this.btnProperties_Click);
             // 
@@ -468,11 +468,11 @@ namespace POSales
             this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRemove.FlatAppearance.BorderSize = 0;
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(676, 246);
+            this.btnRemove.Location = new System.Drawing.Point(664, 246);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(111, 35);
             this.btnRemove.TabIndex = 22;
-            this.btnRemove.Text = "Remove";
+            this.btnRemove.Text = "Видалити";
             this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -483,14 +483,14 @@ namespace POSales
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUser.BackgroundColor = System.Drawing.Color.White;
             this.dgvUser.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUser.ColumnHeadersHeight = 30;
             this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -510,36 +510,36 @@ namespace POSales
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
+            this.Column1.HeaderText = "№";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
+            this.Column1.Width = 48;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "User Name";
+            this.Column2.HeaderText = "Ім\'я користувача";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 112;
+            this.Column2.Width = 159;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Full Name";
+            this.Column3.HeaderText = "Повне ім\'я";
             this.Column3.Name = "Column3";
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Account Activate";
+            this.Column5.HeaderText = "Активний акаунт";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 164;
+            this.Column5.Width = 155;
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Role";
+            this.Column4.HeaderText = "Роль";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 64;
+            this.Column4.Width = 66;
             // 
             // UserAccount
             // 

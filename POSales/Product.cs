@@ -63,17 +63,18 @@ namespace POSales
                 product.txtPcode.Enabled = false;
                 product.btnSave.Enabled = false;
                 product.btnUpdate.Enabled = true;
+                product.Text = "Редагувати товар";
                 product.ShowDialog();
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Видалити обраний товар", "Видалити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
                     cm = new SqlCommand("DELETE FROM tbProduct WHERE pcode LIKE '" + dgvProduct[1, e.RowIndex].Value.ToString() + "'", cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Product has been successfully deleted.", "Point Of Sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Товар було успішно видалено.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             LoadProduct();

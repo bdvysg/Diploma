@@ -209,7 +209,7 @@ namespace POSales
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "Мінімальна кількість";
+            this.Column8.HeaderText = "Рівень запасу";
             this.Column8.Name = "Column8";
             this.Column8.Width = 183;
             // 

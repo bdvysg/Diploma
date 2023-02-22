@@ -187,7 +187,7 @@ namespace POSales
             this.btnPosRecord.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnPosRecord.Size = new System.Drawing.Size(183, 45);
             this.btnPosRecord.TabIndex = 5;
-            this.btnPosRecord.Text = "POS Record";
+            this.btnPosRecord.Text = "Перегляд записів";
             this.btnPosRecord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPosRecord.UseVisualStyleBackColor = true;
             this.btnPosRecord.Click += new System.EventHandler(this.btnPosRecord_Click);
@@ -203,7 +203,7 @@ namespace POSales
             this.btnSaleHist.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnSaleHist.Size = new System.Drawing.Size(183, 45);
             this.btnSaleHist.TabIndex = 4;
-            this.btnSaleHist.Text = "Sale History";
+            this.btnSaleHist.Text = "Історія продаж";
             this.btnSaleHist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSaleHist.UseVisualStyleBackColor = true;
             this.btnSaleHist.Click += new System.EventHandler(this.btnSaleHist_Click);
@@ -219,7 +219,7 @@ namespace POSales
             this.btnRecord.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnRecord.Size = new System.Drawing.Size(183, 45);
             this.btnRecord.TabIndex = 5;
-            this.btnRecord.Text = "Record";
+            this.btnRecord.Text = "Записи";
             this.btnRecord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecord.UseVisualStyleBackColor = true;
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click);
@@ -235,7 +235,7 @@ namespace POSales
             this.btnSupplier.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnSupplier.Size = new System.Drawing.Size(183, 45);
             this.btnSupplier.TabIndex = 4;
-            this.btnSupplier.Text = "Supplier";
+            this.btnSupplier.Text = "Постачальники";
             this.btnSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSupplier.UseVisualStyleBackColor = true;
             this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
@@ -262,7 +262,7 @@ namespace POSales
             this.btnStockAdjustment.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnStockAdjustment.Size = new System.Drawing.Size(183, 45);
             this.btnStockAdjustment.TabIndex = 5;
-            this.btnStockAdjustment.Text = "Stock Adjustment";
+            this.btnStockAdjustment.Text = "Операції";
             this.btnStockAdjustment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockAdjustment.UseVisualStyleBackColor = true;
             this.btnStockAdjustment.Click += new System.EventHandler(this.btnStockAdjustment_Click);
@@ -278,7 +278,7 @@ namespace POSales
             this.btnStockEntry.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnStockEntry.Size = new System.Drawing.Size(183, 45);
             this.btnStockEntry.TabIndex = 4;
-            this.btnStockEntry.Text = "Stock Entry";
+            this.btnStockEntry.Text = "Замовлення";
             this.btnStockEntry.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockEntry.UseVisualStyleBackColor = true;
             this.btnStockEntry.Click += new System.EventHandler(this.btnStockEntry_Click);
@@ -294,7 +294,7 @@ namespace POSales
             this.btnInStock.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnInStock.Size = new System.Drawing.Size(183, 45);
             this.btnInStock.TabIndex = 3;
-            this.btnInStock.Text = "In Stock";
+            this.btnInStock.Text = "Склад";
             this.btnInStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInStock.UseVisualStyleBackColor = true;
             this.btnInStock.Click += new System.EventHandler(this.btnInStock_Click);
@@ -322,7 +322,7 @@ namespace POSales
             this.btnBrand.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnBrand.Size = new System.Drawing.Size(183, 45);
             this.btnBrand.TabIndex = 5;
-            this.btnBrand.Text = "Бренди";
+            this.btnBrand.Text = "Виробник";
             this.btnBrand.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBrand.UseVisualStyleBackColor = true;
             this.btnBrand.Click += new System.EventHandler(this.btnBrand_Click);
@@ -430,9 +430,9 @@ namespace POSales
             this.lblRole.ForeColor = System.Drawing.Color.White;
             this.lblRole.Location = new System.Drawing.Point(42, 145);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(104, 20);
+            this.lblRole.Size = new System.Drawing.Size(119, 20);
             this.lblRole.TabIndex = 0;
-            this.lblRole.Text = "Administrator";
+            this.lblRole.Text = "Адміністратор";
             // 
             // pictureBox1
             // 
@@ -483,11 +483,12 @@ namespace POSales
             this.Controls.Add(this.panelSlide);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Point Of Sales";
+            this.Text = "Market";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelSlide.ResumeLayout(false);
             this.panelSubSetting.ResumeLayout(false);

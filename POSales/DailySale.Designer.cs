@@ -93,7 +93,7 @@ namespace POSales
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(3, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(82, 18);
+            this.lblTitle.Size = new System.Drawing.Size(130, 18);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Продані товари";
             this.lblTitle.Visible = false;
@@ -124,9 +124,9 @@ namespace POSales
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 20);
+            this.label2.Size = new System.Drawing.Size(142, 20);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Filter By Date: From";
+            this.label2.Text = "Оберіть дату:      З";
             // 
             // label3
             // 
@@ -134,9 +134,9 @@ namespace POSales
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(285, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 20);
+            this.label3.Size = new System.Drawing.Size(28, 20);
             this.label3.TabIndex = 11;
-            this.label3.Text = "To";
+            this.label3.Text = "до";
             // 
             // lblTotal
             // 
@@ -156,9 +156,9 @@ namespace POSales
             this.cboCashier.FormattingEnabled = true;
             this.cboCashier.Location = new System.Drawing.Point(452, 14);
             this.cboCashier.Name = "cboCashier";
-            this.cboCashier.Size = new System.Drawing.Size(131, 28);
+            this.cboCashier.Size = new System.Drawing.Size(140, 28);
             this.cboCashier.TabIndex = 13;
-            this.cboCashier.Text = "Select Cashier";
+            this.cboCashier.Text = "Оберіть касира";
             this.cboCashier.SelectedIndexChanged += new System.EventHandler(this.cboCashier_SelectedIndexChanged);
             // 
             // btnPrint
@@ -227,35 +227,36 @@ namespace POSales
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
+            this.Column1.HeaderText = "№";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
+            this.Column1.Width = 48;
             // 
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column9.HeaderText = "Id";
+            this.Column9.HeaderText = "Код";
             this.Column9.Name = "Column9";
             this.Column9.Visible = false;
-            this.Column9.Width = 49;
+            this.Column9.Width = 60;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Invoice#";
+            this.Column3.HeaderText = "Рахунок-фактура";
             this.Column3.Name = "Column3";
+            this.Column3.Width = 166;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Pcode";
+            this.Column2.HeaderText = "Код товару";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 81;
+            this.Column2.Width = 115;
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Description";
+            this.Column4.HeaderText = "Опис";
             this.Column4.Name = "Column4";
             // 
             // Column7
@@ -263,36 +264,36 @@ namespace POSales
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.Column7.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column7.HeaderText = "Price";
+            this.Column7.HeaderText = "Ціна";
             this.Column7.Name = "Column7";
-            this.Column7.Width = 69;
+            this.Column7.Width = 65;
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column5.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column5.HeaderText = "Qty";
+            this.Column5.HeaderText = "Кількість";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 58;
+            this.Column5.Width = 93;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.Column6.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column6.HeaderText = "Discount";
+            this.Column6.HeaderText = "Знижка";
             this.Column6.Name = "Column6";
-            this.Column6.Width = 95;
+            this.Column6.Width = 88;
             // 
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.Column8.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column8.HeaderText = "Total";
+            this.Column8.HeaderText = "Загалом";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 65;
+            this.Column8.Width = 97;
             // 
             // Cancel
             // 

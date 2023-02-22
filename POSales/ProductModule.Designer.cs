@@ -66,7 +66,7 @@ namespace POSales
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 35);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -88,9 +88,9 @@ namespace POSales
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 18);
+            this.label1.Size = new System.Drawing.Size(153, 18);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Product Module";
+            this.label1.Text = "Додавання товару";
             // 
             // btnCancel
             // 
@@ -103,7 +103,7 @@ namespace POSales
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 35);
             this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Відмінити";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -118,7 +118,7 @@ namespace POSales
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 35);
             this.btnUpdate.TabIndex = 11;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Оновити";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -127,9 +127,9 @@ namespace POSales
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(32, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 20);
+            this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Product Code :";
+            this.label2.Text = "Код товару :";
             // 
             // txtPcode
             // 
@@ -154,27 +154,27 @@ namespace POSales
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(376, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 20);
+            this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Barcode :";
+            this.label3.Text = "Штрих-код :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(32, 133);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Description :";
+            this.label4.Text = "Опис :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(32, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.Size = new System.Drawing.Size(91, 20);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Brand :";
+            this.label5.Text = "Виробник :";
             // 
             // label6
             // 
@@ -183,25 +183,25 @@ namespace POSales
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Category :";
+            this.label6.Text = "Категорія :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(32, 269);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 20);
+            this.label7.Size = new System.Drawing.Size(50, 20);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Price :";
+            this.label7.Text = "Ціна :";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(376, 269);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(128, 20);
+            this.label8.Size = new System.Drawing.Size(181, 20);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Re-Order Level :";
+            this.label8.Text = "Мінімальний залишок :";
             // 
             // txtBarcode
             // 
@@ -242,7 +242,7 @@ namespace POSales
             // 
             // UDReOrder
             // 
-            this.UDReOrder.Location = new System.Drawing.Point(510, 266);
+            this.UDReOrder.Location = new System.Drawing.Point(563, 266);
             this.UDReOrder.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -254,7 +254,7 @@ namespace POSales
             0,
             0});
             this.UDReOrder.Name = "UDReOrder";
-            this.UDReOrder.Size = new System.Drawing.Size(184, 26);
+            this.UDReOrder.Size = new System.Drawing.Size(131, 26);
             this.UDReOrder.TabIndex = 16;
             this.UDReOrder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.UDReOrder.Value = new decimal(new int[] {

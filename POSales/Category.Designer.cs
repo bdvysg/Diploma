@@ -96,7 +96,7 @@ namespace POSales
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 43);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Manage Category";
+            this.label1.Text = "Перегляд категорій";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
@@ -113,22 +113,22 @@ namespace POSales
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
+            this.Column1.HeaderText = "№";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
+            this.Column1.Width = 48;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Id";
+            this.Column2.HeaderText = "Код";
             this.Column2.Name = "Column2";
             this.Column2.Visible = false;
-            this.Column2.Width = 47;
+            this.Column2.Width = 60;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Category";
+            this.Column3.HeaderText = "Назва";
             this.Column3.Name = "Column3";
             // 
             // Edit

@@ -75,9 +75,9 @@ namespace POSales
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(7, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 43);
+            this.label1.Size = new System.Drawing.Size(135, 43);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Manage Brand";
+            this.label1.Text = "Перегляд виробників";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dgvBrand
@@ -113,22 +113,22 @@ namespace POSales
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
+            this.Column1.HeaderText = "№";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
+            this.Column1.Width = 48;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Id";
+            this.Column2.HeaderText = "Код";
             this.Column2.Name = "Column2";
             this.Column2.Visible = false;
-            this.Column2.Width = 49;
+            this.Column2.Width = 60;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Brand";
+            this.Column3.HeaderText = "Назва";
             this.Column3.Name = "Column3";
             // 
             // Edit

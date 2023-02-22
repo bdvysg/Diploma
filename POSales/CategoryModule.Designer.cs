@@ -72,18 +72,18 @@ namespace POSales
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 18);
+            this.label1.Size = new System.Drawing.Size(227, 18);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Category Module";
+            this.label1.Text = "Додавання категорії товару";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(12, 158);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(22, 20);
+            this.lblId.Size = new System.Drawing.Size(37, 20);
             this.lblId.TabIndex = 13;
-            this.lblId.Text = "id";
+            this.lblId.Text = "Код";
             this.lblId.Visible = false;
             // 
             // btnCancel
@@ -97,7 +97,7 @@ namespace POSales
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 35);
             this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Відмінити";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -112,7 +112,7 @@ namespace POSales
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 35);
             this.btnUpdate.TabIndex = 11;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Оновити";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -121,9 +121,9 @@ namespace POSales
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 20);
+            this.label2.Size = new System.Drawing.Size(112, 20);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Category Name :";
+            this.label2.Text = "Введіть назву :";
             // 
             // btnSave
             // 
@@ -136,7 +136,7 @@ namespace POSales
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 35);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 

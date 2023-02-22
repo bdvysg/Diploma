@@ -115,52 +115,51 @@ namespace POSales
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(7, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 43);
+            this.label1.Size = new System.Drawing.Size(178, 43);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Manage Supplier";
+            this.label1.Text = "Перегляд постачальників";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
+            this.Column1.HeaderText = "№";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
+            this.Column1.Width = 48;
             // 
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "id";
+            this.Column8.HeaderText = "Код";
             this.Column8.Name = "Column8";
             this.Column8.Visible = false;
-            this.Column8.Width = 45;
+            this.Column8.Width = 60;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Supplier";
+            this.Column2.HeaderText = "Постачальник";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 89;
+            this.Column2.Width = 136;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Address";
+            this.Column3.HeaderText = "Адреса";
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Contact Person";
+            this.Column4.HeaderText = "Контактна особа";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 146;
+            this.Column4.Width = 163;
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Phone";
+            this.Column5.HeaderText = "Телефон";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 79;
             // 
             // Column6
             // 
@@ -172,9 +171,9 @@ namespace POSales
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column7.HeaderText = "Fax";
+            this.Column7.HeaderText = "Факс";
             this.Column7.Name = "Column7";
-            this.Column7.Width = 56;
+            this.Column7.Width = 73;
             // 
             // Edit
             // 

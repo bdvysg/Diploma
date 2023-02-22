@@ -201,7 +201,7 @@ namespace POSales
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PromptText = "Search here";
+            this.txtSearch.PromptText = "Шукай тут";
             this.txtSearch.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSearch.SelectedText = "";
             this.txtSearch.SelectionLength = 0;
@@ -210,7 +210,7 @@ namespace POSales
             this.txtSearch.Size = new System.Drawing.Size(376, 27);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.UseSelectable = true;
-            this.txtSearch.WaterMark = "Search here";
+            this.txtSearch.WaterMark = "Шукай тут";
             this.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSearch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);

@@ -118,7 +118,7 @@ namespace POSales
             this.MinimizeBox = false;
             this.Name = "ResetPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reset Password";
+            this.Text = "Змінити пароль";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResetPassword_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

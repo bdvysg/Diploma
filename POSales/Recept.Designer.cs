@@ -53,7 +53,7 @@ namespace POSales
             this.MinimizeBox = false;
             this.Name = "Recept";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Print Preview";
+            this.Text = "Попередній перегляд друку";
             this.Load += new System.EventHandler(this.Recept_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Recept_KeyDown);
             this.ResumeLayout(false);

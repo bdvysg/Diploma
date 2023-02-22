@@ -160,7 +160,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Brand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Виробник";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).EndInit();
             this.ResumeLayout(false);

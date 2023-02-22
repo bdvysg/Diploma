@@ -555,7 +555,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UserAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Account";
+            this.Text = "Акаунт користувача";
             this.Load += new System.EventHandler(this.UserAccount_Load);
             this.panel1.ResumeLayout(false);
             this.metroTabControl1.ResumeLayout(false);

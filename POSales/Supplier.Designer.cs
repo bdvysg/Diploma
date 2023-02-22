@@ -204,7 +204,7 @@ namespace POSales
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Supplier";
-            this.Text = "SUPPLIER";
+            this.Text = "Постачальник";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupplier)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

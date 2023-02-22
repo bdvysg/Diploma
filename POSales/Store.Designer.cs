@@ -147,7 +147,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Store";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "STORE";
+            this.Text = "Магазин";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Store_KeyDown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

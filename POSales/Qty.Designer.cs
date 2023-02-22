@@ -59,7 +59,7 @@ namespace POSales
             this.MinimizeBox = false;
             this.Name = "Qty";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Qty";
+            this.Text = "Кількість";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

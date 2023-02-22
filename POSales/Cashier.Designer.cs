@@ -676,7 +676,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Cashier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cashier";
+            this.Text = "Касир";
             this.Load += new System.EventHandler(this.Cashier_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -1234,7 +1234,7 @@ namespace POSales
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Record";
-            this.Text = "RECORDS";
+            this.Text = "Записи";
             this.panel1.ResumeLayout(false);
             this.metroTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

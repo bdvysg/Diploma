@@ -175,7 +175,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Discount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DISCOUNT";
+            this.Text = "Знижка";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Discount_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

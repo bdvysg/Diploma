@@ -95,7 +95,7 @@ namespace POSales
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(82, 18);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Sold Items";
+            this.lblTitle.Text = "Продані товари";
             this.lblTitle.Visible = false;
             // 
             // dtFrom
@@ -317,7 +317,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DailySale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SALE HISTORY";
+            this.Text = "Історія продаж";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DailySale_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

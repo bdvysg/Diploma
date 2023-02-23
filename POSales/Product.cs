@@ -74,7 +74,7 @@ namespace POSales
                     cm = new SqlCommand("DELETE FROM tbProduct WHERE pcode LIKE '" + dgvProduct[1, e.RowIndex].Value.ToString() + "'", cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Товар було успішно видалено.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Товар було успішно видалено .", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             LoadProduct();

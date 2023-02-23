@@ -1,0 +1,10 @@
+# Logs and temporary files
+*.log
+*.vspscc
+*.vssscc
+*.suo
+*.user
+*.cache
+*.csproj.user
+*.vsidx
+

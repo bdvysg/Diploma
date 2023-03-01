@@ -8,3 +8,5 @@
 *.csproj.user
 *.vsidx
 
+POSales/bin/
+POSales/obj/

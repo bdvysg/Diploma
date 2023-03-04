@@ -10,9 +10,8 @@ GO
 
 CREATE TABLE [dbo].[Brand](
 	Br_Id int IDENTITY(1,1) NOT NULL,
-	Br_Title varchar(50) NOT NULL,
- CONSTRAINT [PK_tbBrand] PRIMARY KEY CLUSTERED 
-( 
+	Br_Title varchar(50) NOT NULL
+)
 GO
 
 

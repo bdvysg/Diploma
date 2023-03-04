@@ -9,15 +9,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE dbo.Adjustment(
-	Ad_Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Ad_Referenceno varchar(50) NULL,
-	Ad_Pcode varchar(50) NULL,
-	Ad_Qty int NULL,
-	Ad_Action varchar(50) NULL,
-	Ad_Remarks varchar(50) NULL,
-	Ad_Date date NULL,
-	Ad_User varchar(50) NULL,
+	Adj_Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Adj_Referenceno varchar(50) NULL,
+	Adj_Product int NOT NULL,
+	Adj_Qty int DEFAULT (0) NOT NULL,
+	Adj_Action varchar(50) NULL,
+	Adj_Remarks varchar(50) NULL,
+	Adj_Date date NULL,
+	Adj_User varchar(50) NULL,
 ) 
 GO
 
-
+ALTER TABLE dbo.Adjustment
+  ADD FOREIGN KEY (Adj_Product)
+  REFERENCES Product(Pr_Id)

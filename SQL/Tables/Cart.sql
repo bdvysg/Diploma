@@ -11,35 +11,31 @@ GO
 CREATE TABLE dbo.Cart(
 	Crt_Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	Crt_Transno varchar(50) NULL,
-	Crt_Pcode varchar(50) NULL,
+	Crt_Product int NOT NULL,
 	Crt_Price decimal(18, 2) NULL,
 	Crt_Qty int NULL,
 	Crt_Disc_percent decimal(18, 2) NULL,
 	Crt_Discount decimal(18, 2) NULL,
 	Crt_Total decimal(18, 2) NULL,
 	Crt_Date date NULL,
-	Crt_Status varchar(50) NULL,
-	Crt_Cashier varchar(50) NULL,
+	Crt_Status int DEFAULT(1) NOT NULL,
+	Crt_Cashier int NULL,
 )
 GO
 
-ALTER TABLE dbo.Cart ADD  CONSTRAINT DF_Cart_Qty  DEFAULT ((0)) FOR qty
+ALTER TABLE dbo.Cart ADD DEFAULT ((0)) FOR Crt_Qty
 GO
 
-ALTER TABLE dbo.Cart ADD  CONSTRAINT DF_Cart_Disc_percent  DEFAULT ((0)) FOR disc_percent
+ALTER TABLE dbo.Cart ADD DEFAULT ((0)) FOR Crt_Disc_percent
 GO
 
-ALTER TABLE dbo.Cart ADD  CONSTRAINT DF_Cart_Disc  DEFAULT ((0)) FOR disc
-GO
+ALTER TABLE dbo.Cart ADD DEFAULT ((0)) FOR Crt_Discount
 
-ALTER TABLE dbo.Cart ADD  CONSTRAINT DF_Cart_Status  DEFAULT ('Pending') FOR status
-GO
+ALTER TABLE dbo.Cart 
+  ADD FOREIGN KEY(Crt_Product)
+  REFERENCES dbo.Product (Pr_Id)
+  GO
 
-ALTER TABLE dbo.Cart  WITH CHECK ADD  CONSTRAINT FK_Cart_tbProduct FOREIGN KEY(pcode)
-REFERENCES dbo.tbProduct (pcode)
-GO
-
-ALTER TABLE dbo.Cart CHECK CONSTRAINT FK_Cart_tbProduct
-GO
-
-
+ALTER TABLE dbo.Cart
+  ADD FOREIGN KEY (Crt_Cashier)
+  REFERENCES dbo.Employee (Emp_Id)

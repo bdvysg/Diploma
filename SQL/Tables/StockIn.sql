@@ -11,7 +11,7 @@ GO
 CREATE TABLE dbo.StockIn(
 	Sti_id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	Sti_Refno varchar(50) NULL,
-	Sti_Product varchar(50) NULL,
+	Sti_Product int NOT NULL,
 	Sti_Qty int NULL,
 	Sti_Date datetime NULL,
 	Sti_StockInBy varchar(50) NULL,
@@ -44,6 +44,3 @@ GO
 
 ALTER TABLE dbo.StockIn CHECK CONSTRAINT FK_StockIn_StockInStatus
 GO
-
-
-

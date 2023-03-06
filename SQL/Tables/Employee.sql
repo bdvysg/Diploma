@@ -7,3 +7,5 @@ CREATE TABLE Employee(
   Emp_Salary money NOT NULL,
   Emp_JoiningDate datetime NOT NULL
 )
+
+ALTER TABLE Employee ADD Emp_Gender char NULL

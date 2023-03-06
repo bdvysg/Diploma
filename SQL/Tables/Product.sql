@@ -13,30 +13,20 @@ CREATE TABLE dbo.Product(
 	Pr_BarCode varchar(20) NULL,
 	Pr_Description varchar(max) NOT NULL,
 	Pr_Brand int NOT NULL,
+  Pr_Title varchar(200),
 	Pr_Category int NOT NULL,
 	Pr_PriceOpt decimal(18, 2) NOT NULL,
   Pr_Price decimal(18, 2) NOT NULL,
-	Pr_Qty int NULL,
+	Pr_Qty varchar(20) NULL,
 	Pr_Reorder int NULL,
+  Pr_Image image NULL
 )
 GO
 
-ALTER TABLE dbo.Product ADD  CONSTRAINT DF_Product_qty  DEFAULT ((0)) FOR Pr_Qty
-GO
-
-ALTER TABLE dbo.Product  WITH CHECK ADD  CONSTRAINT FK_Product_Brand FOREIGN KEY(Pr_Brand)
+ALTER TABLE dbo.Product ADD  FOREIGN KEY(Pr_Brand)
 REFERENCES dbo.Brand (Br_Id)
 GO
 
-ALTER TABLE dbo.Product CHECK CONSTRAINT FK_Product_Brand
+ALTER TABLE dbo.Product ADD FOREIGN KEY(Pr_Category)
+REFERENCES dbo.Category (Catg_Id)
 GO
-
-ALTER TABLE dbo.Product  WITH CHECK ADD  CONSTRAINT FK_Product_Category FOREIGN KEY(Pr_Category)
-REFERENCES dbo.Category (Cat_Id)
-GO
-
-ALTER TABLE dbo.Product CHECK CONSTRAINT FK_Product_Brand
-GO
-
-
-

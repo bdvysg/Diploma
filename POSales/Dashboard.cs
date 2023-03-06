@@ -26,9 +26,9 @@ namespace POSales
         {
             string sdate = DateTime.Now.ToString("yyyy-MM-dd");
             lblDalySale.Text = dbcon.ExtractData("SELECT ISNULL(SUM(total),0) AS total FROM tbCart WHERE status LIKE 'Sold' AND sdate BETWEEN '"+sdate+ "' AND '" + sdate + "'").ToString("#,##0.00");
-            lblTotalProduct.Text = dbcon.ExtractData("SELECT COUNT(*) FROM tbProduct").ToString("#,##0");
-            lblStockOnHand.Text = dbcon.ExtractData("SELECT ISNULL(SUM(qty), 0) AS qty FROM tbProduct").ToString("#,##0");
-            lblCriticalItems.Text = dbcon.ExtractData("SELECT COUNT(*) FROM vwCriticalItems").ToString("#,##0"); 
+            lblTotalProduct.Text = dbcon.ExtractData("SELECT COUNT(*) FROM Product").ToString("#,##0");
+            lblStockOnHand.Text = dbcon.ExtractData("SELECT ISNULL(SUM(OnStk_Quantity), 0) AS qty FROM OnStock").ToString("#,##0");
+            lblCriticalItems.Text = dbcon.ExtractData("SELECT COUNT(*) FROM Product INNER JOIN OnStock ON Pr_Id = OnStk_Product WHERE OnStk_Quantity < Pr_Reorder").ToString("#,##0"); 
         }
 
     }

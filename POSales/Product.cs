@@ -17,6 +17,9 @@ namespace POSales
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;
+        int StartIndex = 0;
+        int RowCount = 25;
+        int i = 0;
         public Product()
         {
             InitializeComponent();
@@ -26,18 +29,58 @@ namespace POSales
 
         public void LoadProduct()
         {
-            int i = 0;
+            i = 0;
+            StartIndex = 0;
             dgvProduct.Rows.Clear();
-            cm = new SqlCommand("SELECT p.pcode, p.barcode, p.pdesc, b.brand, c.category, p.price, p.reorder FROM tbProduct AS p INNER JOIN tbBrand AS b ON b.id = p.bid INNER JOIN tbCategory AS c on c.id = p.cid WHERE CONCAT(p.pdesc, b.brand, c.category) LIKE '%" +txtSearch.Text+ "%'",cn);
+            cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text+ "', " + StartIndex.ToString() + ", " + RowCount.ToString(),cn);
             cn.Open();
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
                 i++;
-                dgvProduct.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                       dr[1].ToString(),
+                                       dr[2].ToString(),
+                                       dr[3].ToString(),
+                                       dr[4].ToString(),
+                                       dr[5].ToString(),
+                                       dr[6].ToString(),
+                                       dr[7].ToString(),
+                                       dr[8].ToString()
+                                    ); 
             }
             dr.Close();
             cn.Close();
+        }
+
+        private void dgvProduct_Scroll(object sender, ScrollEventArgs e)
+        {
+            int displayedRows = dgvProduct.DisplayedRowCount(true);
+            int lastVisibleRowIndex = dgvProduct.FirstDisplayedScrollingRowIndex + displayedRows - 1;
+            if (lastVisibleRowIndex >= dgvProduct.RowCount - 1)
+            {
+                StartIndex += 25;
+                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                cn.Open();
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                           dr[1].ToString(),
+                                           dr[2].ToString(),
+                                           dr[3].ToString(),
+                                           dr[4].ToString(),
+                                           dr[5].ToString(),
+                                           dr[6].ToString(),
+                                           dr[7].ToString(),
+                                           dr[8].ToString()
+
+                                        );
+                }
+                dr.Close();
+                cn.Close();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -54,7 +97,7 @@ namespace POSales
                 ProductModule product = new ProductModule(this);
                 product.txtPcode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
                 product.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
-                product.txtPdesc.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
+                //product.txtPdesc.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
                 product.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
                 product.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
                 product.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();

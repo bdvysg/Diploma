@@ -10,9 +10,7 @@ GO
 
 CREATE TABLE dbo.StockIn(
 	Sti_id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Sti_Refno varchar(50) NULL,
-	Sti_Product int NOT NULL,
-	Sti_Qty int NULL,
+	Sti_Doc varchar(50) NULL,
 	Sti_Date datetime NULL,
 	Sti_StockInBy varchar(50) NULL,
 	Sti_Status int DEFAULT(1) NOT NULL,
@@ -21,14 +19,6 @@ CREATE TABLE dbo.StockIn(
 GO
 
 ALTER TABLE dbo.StockIn ADD  CONSTRAINT DF_StockIn_qty  DEFAULT ((0)) FOR Sti_qty
-GO
-
-
-ALTER TABLE dbo.StockIn  WITH CHECK ADD  CONSTRAINT FK_StockIn_Product FOREIGN KEY(Sti_Product)
-REFERENCES dbo.Product (Pr_Id)
-GO
-
-ALTER TABLE dbo.StockIn CHECK CONSTRAINT FK_StockIn_Product
 GO
 
 ALTER TABLE dbo.StockIn  WITH CHECK ADD  CONSTRAINT FK_StockIn_Supplier FOREIGN KEY(Sti_SupplierId)
@@ -43,4 +33,7 @@ REFERENCES dbo.StockInStatus (Sti_Id)
 GO
 
 ALTER TABLE dbo.StockIn CHECK CONSTRAINT FK_StockIn_StockInStatus
+GO
+
+ALTER TABLE dbo.StockIn ADD Sti_IsConfirmed bit DEFAULT(0) NOT NULL
 GO

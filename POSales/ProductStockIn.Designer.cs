@@ -32,16 +32,16 @@ namespace POSales
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductStockIn));
             this.dgvProduct = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Select = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtSearch = new MetroFramework.Controls.MetroTextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Select = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -75,41 +75,8 @@ namespace POSales
             this.dgvProduct.Size = new System.Drawing.Size(716, 508);
             this.dgvProduct.TabIndex = 5;
             this.dgvProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 53;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Pcode";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 81;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Description";
-            this.Column4.Name = "Column4";
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "Qty";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 58;
-            // 
-            // Select
-            // 
-            this.Select.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Select.HeaderText = "";
-            this.Select.Image = ((System.Drawing.Image)(resources.GetObject("Select.Image")));
-            this.Select.Name = "Select";
-            this.Select.Width = 5;
+            this.dgvProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellDoubleClick);
+            this.dgvProduct.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvProduct_Scroll);
             // 
             // panel1
             // 
@@ -135,7 +102,7 @@ namespace POSales
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(82, 35);
             this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Закрити";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -194,10 +161,45 @@ namespace POSales
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(7, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 43);
+            this.label1.Size = new System.Drawing.Size(131, 43);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Product Stock In";
+            this.label1.Text = "Додати продукт";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "No";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 53;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Код";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 60;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.HeaderText = "Назва";
+            this.Column4.Name = "Column4";
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column8.HeaderText = "Кількість";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 93;
+            // 
+            // Select
+            // 
+            this.Select.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Select.HeaderText = "";
+            this.Select.Image = ((System.Drawing.Image)(resources.GetObject("Select.Image")));
+            this.Select.Name = "Select";
+            this.Select.Width = 5;
             // 
             // ProductStockIn
             // 
@@ -213,7 +215,7 @@ namespace POSales
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProductStockIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProductStockIn";
+            this.Text = "Додати продукт";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProductStockIn_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -224,15 +226,15 @@ namespace POSales
         #endregion
 
         private System.Windows.Forms.DataGridView dgvProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewImageColumn Select;
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroTextBox txtSearch;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewImageColumn Select;
     }
 }

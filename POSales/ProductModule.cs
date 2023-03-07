@@ -20,11 +20,11 @@ namespace POSales
         SqlDataReader dr;
         string stitle = "Market";
         Product product;
-        public ProductModule(Product pd)
+        public ProductModule()
         {
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
-            product = pd;
+           //product = pd;
             LoadBrand();
             LoadCategory();
         }
@@ -51,7 +51,7 @@ namespace POSales
             {
                 cm = new SqlCommand("SELECT * FROM Product WHERE Pr_Id = '" + id + "'", cn);
                 cn.Open();
-                var dr = cm.ExecuteReader();
+                dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
                     txtPcode.Text = dr[0].ToString();
@@ -60,14 +60,17 @@ namespace POSales
                     txtPrice.Text = dr[5].ToString();
                     txtQuantity.Text = dr[7].ToString();
                     UDReOrder.Value = int.Parse(dr[8].ToString());
-                    imgProduct.Image = Image.FromFile("C:/base/stud/actual/Supermarket CRM/SQL/Insert/images/" + dr[12].ToString());
+                    //imgProduct.Image = Image.FromFile("C:/base/stud/actual/Supermarket CRM/SQL/Insert/images/" + dr[12].ToString());
                 }
-                dr.Close();
-                cn.Close();
             }
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally 
+            { 
+                cn.Close();
+                dr.Close();
             }
         }
 
@@ -109,7 +112,7 @@ namespace POSales
                     cn.Close();
                     MessageBox.Show("Продукт було успішно додано.", stitle);
                     Clear();
-                    product.LoadProduct();
+                    //product.LoadProduct();
                 }
 
             }

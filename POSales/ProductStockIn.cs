@@ -17,8 +17,11 @@ namespace POSales
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;
-        string stitle = "Point Of Sales";
+        string stitle = "Market";
         StockIn stockIn;
+        int StartIndex = 0;
+        int RowCount = 25;
+        int i = 0;
         public ProductStockIn(StockIn stk)
         {
             InitializeComponent();
@@ -34,18 +37,33 @@ namespace POSales
 
         public void LoadProduct()
         {
-            int i = 0;
+            i = 0;
+            StartIndex = 0;
             dgvProduct.Rows.Clear();
-            cm = new SqlCommand("SELECT pcode, pdesc, qty FROM tbProduct WHERE pdesc LIKE '%" + txtSearch.Text + "%'", cn);
-            cn.Open();
-            dr = cm.ExecuteReader();
-            while (dr.Read())
+            try
             {
-                i++;
-                dgvProduct.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                cn.Open();
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                           dr[1].ToString(),
+                                           dr[8].ToString()
+                                        );
+                }
+                 
             }
-            dr.Close();
-            cn.Close();
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
         }
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,17 +71,17 @@ namespace POSales
             string colName = dgvProduct.Columns[e.ColumnIndex].Name;
             if (colName == "Select")
             {
-                if(stockIn.txtStockInBy.Text == string.Empty)
-                {
-                    MessageBox.Show("Please enter stock in by name", stitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    stockIn.txtStockInBy.Focus();
-                    this.Dispose();                                        
-                }
+               // if(stockIn.txtStockInBy.Text == string.Empty)
+               // {
+                    //MessageBox.Show("Please enter stock in by name", stitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //stockIn.txtStockInBy.Focus();
+                    //this.Dispose();                                        
+                //}
 
-                if (MessageBox.Show("Add this item?", stitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Додати цей товар?", stitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     addStockIn(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    MessageBox.Show("Successfully added", stitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Товар успішно додано", stitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }
@@ -74,7 +92,7 @@ namespace POSales
             try
             {
                 cn.Open();
-                cm = new SqlCommand("INSERT INTO tbStockIn (refno, pcode, sdate, stockinby, supplierid)VALUES (@refno, @pcode, @sdate, @stockinby, @supplierid)", cn);
+                cm = new SqlCommand("INSERT INTO StockIn (refno, pcode, sdate, stockinby, supplierid)VALUES (@refno, @pcode, @sdate, @stockinby, @supplierid)", cn);
                 cm.Parameters.AddWithValue("@refno", stockIn.txtRefNo.Text);
                 cm.Parameters.AddWithValue("@pcode", pcode);
                 cm.Parameters.AddWithValue("@sdate", stockIn.dtStockIn.Value);
@@ -101,6 +119,50 @@ namespace POSales
             if (e.KeyCode == Keys.Escape)
             {
                 this.Dispose();
+            }
+        }
+
+        private void dgvProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ProductModule product = new ProductModule();
+            product.LoadProduct(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+            product.txtPcode.Enabled = false;
+            product.btnSave.Enabled = false;
+            product.btnUpdate.Enabled = true;
+            product.ShowDialog();
+        }
+
+        private void dgvProduct_Scroll(object sender, ScrollEventArgs e)
+        {
+            int displayedRows = dgvProduct.DisplayedRowCount(true);
+            int lastVisibleRowIndex = dgvProduct.FirstDisplayedScrollingRowIndex + displayedRows - 1;
+            if (lastVisibleRowIndex >= dgvProduct.RowCount - 1)
+            {
+                StartIndex += 25;
+                try
+                {
+                    cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                    cn.Open();
+                    dr = cm.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        i++;
+                        dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                               dr[1].ToString(),
+                                               dr[8].ToString()
+                                            );
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    dr.Close();
+                    cn.Close();
+                }
             }
         }
     }

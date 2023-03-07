@@ -85,7 +85,7 @@ namespace POSales
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ProductModule productModule = new ProductModule(this);
+            ProductModule productModule = new ProductModule();
             productModule.ShowDialog();
         }
 
@@ -94,7 +94,7 @@ namespace POSales
             string colName = dgvProduct.Columns[e.ColumnIndex].Name;
             if (colName == "Edit")
             {
-                ProductModule product = new ProductModule(this);
+                ProductModule product = new ProductModule();
                 //product.txtPcode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
                 //product.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
                 //product.txtPdesc.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();

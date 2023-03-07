@@ -31,12 +31,12 @@ namespace POSales
             int i = 0;
             dgvBrand.Rows.Clear();
             cn.Open();
-            cm = new SqlCommand("SELECT * FROM tbBrand ORDER BY brand", cn);
+            cm = new SqlCommand("SELECT * FROM Brand ORDER BY Br_Title", cn);
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
                 i++;
-                dgvBrand.Rows.Add(i, dr["id"].ToString(), dr["brand"].ToString());
+                dgvBrand.Rows.Add(i, dr["Br_Id"].ToString(), dr["Br_Title"].ToString());
             }
             dr.Close();
             cn.Close();
@@ -45,6 +45,7 @@ namespace POSales
         private void btnAdd_Click(object sender, EventArgs e)
         {
             BrandModule moduleForm = new BrandModule(this);
+            moduleForm.btnUpdate.Enabled = false;
             moduleForm.ShowDialog();
         }
 
@@ -54,13 +55,13 @@ namespace POSales
             string colName = dgvBrand.Columns[e.ColumnIndex].Name;
             if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви хочете видалити даного виробника?", "Видалити виробника", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("DELETE FROM tbBrand WHERE id LIKE '" + dgvBrand[1, e.RowIndex].Value.ToString() + "'", cn);
+                    cm = new SqlCommand("DELETE FROM Brand WHERE Br_Id = " + dgvBrand[1, e.RowIndex].Value.ToString(), cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Brand has been successfully deleted.", "POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Виробник був успішно видалений.", "Market", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -71,6 +72,7 @@ namespace POSales
                 brandModule.txtBrand.Text = dgvBrand[2, e.RowIndex].Value.ToString();
                 brandModule.btnSave.Enabled = false;
                 brandModule.btnUpdate.Enabled = true;
+                brandModule.Text = "Редагування виробника";
                 brandModule.ShowDialog();
             }
             LoadBrand();

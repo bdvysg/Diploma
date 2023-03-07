@@ -42,7 +42,7 @@ namespace POSales
             {
                 bool found;
                 cn.Open();
-                cm = new SqlCommand("Select * From tbUser Where username = @username and password = @password", cn);
+                cm = new SqlCommand("exec GetUserInfo @username, @password", cn);
                 cm.Parameters.AddWithValue("@username", txtName.Text);
                 cm.Parameters.AddWithValue("@password", txtPass.Text);
                 dr = cm.ExecuteReader();
@@ -50,11 +50,11 @@ namespace POSales
                 if(dr.HasRows)
                 {
                     found = true;
-                    _username = dr["username"].ToString();
-                    _name = dr["name"].ToString();
-                    _role = dr["role"].ToString();
-                    _pass = dr["password"].ToString();
-                    _isactivate = bool.Parse(dr["isactivate"].ToString());
+                    _username = dr["Usr_Username"].ToString();
+                    _name = dr["Usr_Name"].ToString();
+                    _role = dr["Ur_Title"].ToString();
+                    _pass = dr["Usr_Password"].ToString();
+                    _isactivate = bool.Parse(dr["Usr_Isactivate"].ToString());
 
                 }
                 else
@@ -71,28 +71,27 @@ namespace POSales
                         MessageBox.Show("Аккаунт деактивовано адміністратором. Неможливо ввійти", "Аккаунт деактивовано", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if(_role=="Cashier")
+                    if(_role=="Касир")
                     {
-                        //MessageBox.Show("Welcome " + _name + " |", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtName.Clear();
                         txtPass.Clear();
-                        this.Hide();
                         Cashier cashier = new Cashier();
                         cashier.lblUsername.Text = _username;
                         cashier.lblname.Text = _name + " | " + _role;
-                        cashier.ShowDialog();
+                        cashier.Show();
+                        this.Hide();
                     }
                     else
                     {
-                        //MessageBox.Show("Welcome " + _name + " |", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtName.Clear();
                         txtPass.Clear();
-                        this.Hide();
+                        
                         MainForm main = new MainForm();
-                        main.lblUsername.Text = _username;
+                        main.lblUsername.Text = _name;
                         main.lblName.Text = _name;
-                        main._pass = _pass;                        
-                        main.ShowDialog();
+                        main._pass = _pass;
+                        main.Show();
+                        this.Hide();
                     }
                 }
                 else

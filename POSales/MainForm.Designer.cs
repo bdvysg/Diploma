@@ -407,11 +407,12 @@ namespace POSales
             // 
             this.lblName.AutoSize = true;
             this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(5, 97);
+            this.lblName.Location = new System.Drawing.Point(79, 97);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(25, 20);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Ln";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblName.Visible = false;
             // 
             // lblUsername
@@ -423,12 +424,13 @@ namespace POSales
             this.lblUsername.Size = new System.Drawing.Size(85, 20);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "UserName";
+            this.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.ForeColor = System.Drawing.Color.White;
-            this.lblRole.Location = new System.Drawing.Point(42, 145);
+            this.lblRole.Location = new System.Drawing.Point(33, 145);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(119, 20);
             this.lblRole.TabIndex = 0;
@@ -489,6 +491,7 @@ namespace POSales
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Market";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelSlide.ResumeLayout(false);
             this.panelSubSetting.ResumeLayout(false);

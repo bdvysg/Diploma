@@ -665,8 +665,8 @@ namespace POSales
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1184, 661);
-            this.Controls.Add(this.panelSlide);
             this.Controls.Add(this.dgvCash);
+            this.Controls.Add(this.panelSlide);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -677,6 +677,7 @@ namespace POSales
             this.Name = "Cashier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Касир";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Cashier_FormClosed);
             this.Load += new System.EventHandler(this.Cashier_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

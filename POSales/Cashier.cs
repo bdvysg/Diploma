@@ -399,5 +399,10 @@ namespace POSales
         {
             Noti();
         }
+
+        private void Cashier_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,11 @@ namespace POSales
 {
     public partial class ProductModule : Form
     {
-        SqlConnection cn = new SqlConnection();
-        SqlCommand cm = new SqlCommand();
+        SqlConnection cn;
+        SqlCommand cm;
         DBConnect dbcon = new DBConnect();
-        string stitle = "Point Of Sales";
+        SqlDataReader dr;
+        string stitle = "Market";
         Product product;
         public ProductModule(Product pd)
         {
@@ -30,17 +32,42 @@ namespace POSales
         public void LoadCategory()
         {
             cboCategory.Items.Clear();
-            cboCategory.DataSource = dbcon.getTable("SELECT * FROM tbCategory");
-            cboCategory.DisplayMember = "category";
-            cboCategory.ValueMember = "id";
+            cboCategory.DataSource = dbcon.getTable("SELECT * FROM Category");
+            cboCategory.DisplayMember = "Catg_Title";
+            cboCategory.ValueMember = "Catg_Id";
         }
 
         public void LoadBrand()
         {
             cboBrand.Items.Clear();
-            cboBrand.DataSource = dbcon.getTable("SELECT * FROM tbBrand");
-            cboBrand.DisplayMember = "brand";
-            cboBrand.ValueMember = "id";
+            cboBrand.DataSource = dbcon.getTable("SELECT * FROM Brand");
+            cboBrand.DisplayMember = "Br_Title";
+            cboBrand.ValueMember = "Br_Id";
+        }
+
+        public void LoadProduct(string id)
+        {
+            try
+            {
+                cm = new SqlCommand("SELECT * FROM Product WHERE Pr_Id = '" + id + "'", cn);
+                cn.Open();
+                var dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    txtPcode.Text = dr[0].ToString();
+                    txtBarcode.Text = dr[1].ToString();
+                    txtPrName.Text = dr[10].ToString();
+                    txtPrice.Text = dr[5].ToString();
+                    txtQuantity.Text = dr[7].ToString();
+                    imgProduct.Image = Image.FromFile("C:/base/stud/actual/Supermarket CRM/SQL/Insert/images/" + dr[12].ToString());
+                }
+                dr.Close();
+                cn.Close();
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void picClose_Click(object sender, EventArgs e)
@@ -52,7 +79,7 @@ namespace POSales
         {
             txtPcode.Clear();
             txtBarcode.Clear();
-            txtPdesc.Clear();
+            txtPrName.Clear();
             txtPrice.Clear();
             cboBrand.SelectedIndex = 0;
             cboCategory.SelectedIndex = 0;
@@ -67,12 +94,12 @@ namespace POSales
         {
             try
             {
-                if (MessageBox.Show("Are you sure want to save this product?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви хочете додати новий продукт?", "Додати", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbProduct(pcode, barcode, pdesc, bid, cid, price, reorder)VALUES (@pcode,@barcode,@pdesc,@bid,@cid,@price, @reorder)", cn);
                     cm.Parameters.AddWithValue("@pcode", txtPcode.Text);
                     cm.Parameters.AddWithValue("@barcode", txtBarcode.Text);
-                    cm.Parameters.AddWithValue("@pdesc", txtPdesc.Text);
+                    cm.Parameters.AddWithValue("@pdesc", txtPrName.Text);
                     cm.Parameters.AddWithValue("@bid", cboBrand.SelectedValue);
                     cm.Parameters.AddWithValue("@cid", cboCategory.SelectedValue);
                     cm.Parameters.AddWithValue("@price", double.Parse(txtPrice.Text));
@@ -80,7 +107,7 @@ namespace POSales
                     cn.Open();
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Product has been successfully saved.", stitle);
+                    MessageBox.Show("Продукт було успішно додано.", stitle);
                     Clear();
                     product.LoadProduct();
                 }
@@ -102,12 +129,12 @@ namespace POSales
         {
             try
             {
-                if (MessageBox.Show("Are you sure want to update this product?", "Update Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви хочете оновити дані про продукт?", "Оновити дані", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("UPDATE tbProduct SET barcode=@barcode,pdesc=@pdesc,bid=@bid,cid=@cid,price=@price, reorder=@reorder WHERE pcode LIKE @pcode", cn);
                     cm.Parameters.AddWithValue("@pcode", txtPcode.Text);
                     cm.Parameters.AddWithValue("@barcode", txtBarcode.Text);
-                    cm.Parameters.AddWithValue("@pdesc", txtPdesc.Text);
+                    cm.Parameters.AddWithValue("@pdesc", txtPrName.Text);
                     cm.Parameters.AddWithValue("@bid", cboBrand.SelectedValue);
                     cm.Parameters.AddWithValue("@cid", cboCategory.SelectedValue);
                     cm.Parameters.AddWithValue("@price", double.Parse(txtPrice.Text));
@@ -115,7 +142,7 @@ namespace POSales
                     cn.Open();
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Product has been successfully updated.", stitle);
+                    MessageBox.Show("Дані про продукт були успішно оновлені.", stitle);
                     Clear();
                     this.Dispose();
                 }

@@ -19,7 +19,7 @@ CREATE TABLE dbo.Product(
   Pr_Price decimal(18, 2) NOT NULL,
 	Pr_Qty varchar(20) NULL,
 	Pr_Reorder int NULL,
-  Pr_Image image NULL
+  Pr_Image varbinary(MAX) NULL
 )
 GO
 

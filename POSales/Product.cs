@@ -95,13 +95,14 @@ namespace POSales
             if (colName == "Edit")
             {
                 ProductModule product = new ProductModule(this);
-                product.txtPcode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
-                product.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
+                //product.txtPcode.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+                //product.txtBarcode.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
                 //product.txtPdesc.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
-                product.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
-                product.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
-                product.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
-                product.UDReOrder.Value = int.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString());
+                //product.cboBrand.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
+                //product.cboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
+                //product.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+                //product.UDReOrder.Value = int.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString());
+                product.LoadProduct(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
 
                 product.txtPcode.Enabled = false;
                 product.btnSave.Enabled = false;
@@ -114,7 +115,7 @@ namespace POSales
                 if (MessageBox.Show("Видалити обраний товар", "Видалити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("DELETE FROM tbProduct WHERE pcode LIKE '" + dgvProduct[1, e.RowIndex].Value.ToString() + "'", cn);
+                    cm = new SqlCommand("DELETE FROM Product WHERE Pr_id = " + dgvProduct[1, e.RowIndex].Value.ToString(), cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
                     MessageBox.Show("Товар було успішно видалено .", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

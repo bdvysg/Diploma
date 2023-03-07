@@ -29,7 +29,7 @@ namespace POSales
             dgvSupplier.Rows.Clear();
             int i = 0;
             cn.Open();
-            cm = new SqlCommand("SELECT * FROM tbSupplier", cn);
+            cm = new SqlCommand("SELECT * FROM Supplier", cn);
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
@@ -44,6 +44,8 @@ namespace POSales
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SupplierModule supplierModule = new SupplierModule(this);
+            supplierModule.btnUpdate.Enabled = false;
+            supplierModule.btnSave.Enabled = true;
             supplierModule.ShowDialog();
         }
 
@@ -67,13 +69,13 @@ namespace POSales
             }
             else if(colName=="Delete")
             {
-                if (MessageBox.Show("Delete this record? click yes to confirm", "CONFIRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви хочете видалити данного постачальника?", "Видалити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("Delete from tbSupplier where id like '" + dgvSupplier.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", cn);
+                    cm = new SqlCommand("DELETE FROM Supplier WHERE Sup_Id = " + dgvSupplier.Rows[e.RowIndex].Cells[1].Value.ToString(), cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Record has been successfully deleted.", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Запис було успішно видалено.", "Market", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                 }
             }

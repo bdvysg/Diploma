@@ -16,7 +16,7 @@ namespace POSales
         SqlConnection cn = new SqlConnection();
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();
-        string stitle = "Point Of Sales";
+        string stitle = "Market";
         Supplier supplier;
         public SupplierModule(Supplier sp)
         {
@@ -48,10 +48,10 @@ namespace POSales
         {
             try
             {
-                if (MessageBox.Show("Save this record? click yes to confirm.", "CONFIRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Зберегти дані про постачальника?.", "Зберегти", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("Insert into tbSupplier (supplier, address, contactperson, phone, email, fax) values (@supplier, @address, @contactperson, @phone, @email, @fax) ", cn);
+                    cm = new SqlCommand("Insert into Supplier (Sup_Name, Sup_Address, Sup_ContactPerson, Sup_Phone, Sup_Email, Sup_Fax) values (@supplier, @address, @contactperson, @phone, @email, @fax) ", cn);
                     cm.Parameters.AddWithValue("@supplier", txtSupplier.Text);
                     cm.Parameters.AddWithValue("@address", txtAddress.Text);
                     cm.Parameters.AddWithValue("@contactperson", txtConPerson.Text);
@@ -60,7 +60,7 @@ namespace POSales
                     cm.Parameters.AddWithValue("@fax", txtFaxNo.Text);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Record has been successfully saved!", "Save Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Дані були успішно збережені!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Clear();
                     supplier.LoadSupplier();
                 }
@@ -81,10 +81,10 @@ namespace POSales
         {
             try
             {
-                if (MessageBox.Show("Update this record? click yes to confirm.", "CONFIRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Оновити дані про постачальника.", "Оновити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("Update tbSupplier set supplier=@supplier, address=@address, contactperson=@contactperson, phone=@phone, email=@email, fax=@fax where id=@id ", cn);
+                    cm = new SqlCommand("Update Supplier set Sup_Name=@supplier, Sup_Address=@address, Sup_ContactPerson=@contactperson, Sup_Phone=@phone, Sup_Email=@email, Sup_Fax=@fax WHERE Sup_Id=@id ", cn);
                     cm.Parameters.AddWithValue("@id", lblId.Text);
                     cm.Parameters.AddWithValue("@supplier", txtSupplier.Text);
                     cm.Parameters.AddWithValue("@address", txtAddress.Text);
@@ -94,14 +94,14 @@ namespace POSales
                     cm.Parameters.AddWithValue("@fax", txtFaxNo.Text);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Record has been successfully updated!", "Update Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Дані були успішно оновлені!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
                 }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message, "Warning");
+                MessageBox.Show(ex.Message, "Помилка!");
             }
         }
 

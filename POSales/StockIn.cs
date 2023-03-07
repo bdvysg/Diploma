@@ -17,7 +17,7 @@ namespace POSales
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;
-        string stitle = "Point Of Sales";
+        string stitle = "Market";
         MainForm main;
         public StockIn(MainForm mn)
         {
@@ -39,8 +39,8 @@ namespace POSales
         public void LoadSupplier()
         {
             cbSupplier.Items.Clear();
-            cbSupplier.DataSource =dbcon.getTable("SELECT * FROM tbSupplier");
-            cbSupplier.DisplayMember = "supplier";
+            cbSupplier.DataSource = dbcon.getTable("SELECT * FROM Supplier");
+            cbSupplier.DisplayMember = "Sup_Title";
         }
 
         public void ProductForSupplier(string pcode)

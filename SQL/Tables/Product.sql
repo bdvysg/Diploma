@@ -11,7 +11,7 @@ GO
 CREATE TABLE dbo.Product(
 	Pr_Id int IDENTITY(1, 1) PRIMARY KEY NOT NULL,
 	Pr_BarCode varchar(20) NULL,
-	Pr_Description varchar(max) NOT NULL,
+	Pr_Description varchar(max) NULL,
 	Pr_Brand int NOT NULL,
   Pr_Title varchar(200),
 	Pr_Category int NOT NULL,

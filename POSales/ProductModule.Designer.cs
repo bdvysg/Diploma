@@ -141,6 +141,7 @@ namespace POSales
             this.txtPcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPcode.Location = new System.Drawing.Point(524, 85);
             this.txtPcode.Name = "txtPcode";
+            this.txtPcode.ReadOnly = true;
             this.txtPcode.Size = new System.Drawing.Size(194, 26);
             this.txtPcode.TabIndex = 8;
             // 
@@ -302,6 +303,7 @@ namespace POSales
             // 
             this.txtQuantity.Location = new System.Drawing.Point(524, 311);
             this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(194, 26);
             this.txtQuantity.TabIndex = 19;
             // 

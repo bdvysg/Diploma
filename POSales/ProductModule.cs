@@ -59,6 +59,7 @@ namespace POSales
                     txtPrName.Text = dr[10].ToString();
                     txtPrice.Text = dr[5].ToString();
                     txtQuantity.Text = dr[7].ToString();
+                    UDReOrder.Value = int.Parse(dr[8].ToString());
                     imgProduct.Image = Image.FromFile("C:/base/stud/actual/Supermarket CRM/SQL/Insert/images/" + dr[12].ToString());
                 }
                 dr.Close();
@@ -85,8 +86,8 @@ namespace POSales
             cboCategory.SelectedIndex = 0;
             UDReOrder.Value = 1;
 
-            txtPcode.Enabled = true;
-            txtPcode.Focus();
+            //txtPcode.Enabled = true;
+            //txtPcode.Focus();
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
         }
@@ -96,14 +97,13 @@ namespace POSales
             {
                 if (MessageBox.Show("Ви хочете додати новий продукт?", "Додати", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    cm = new SqlCommand("INSERT INTO tbProduct(pcode, barcode, pdesc, bid, cid, price, reorder)VALUES (@pcode,@barcode,@pdesc,@bid,@cid,@price, @reorder)", cn);
-                    cm.Parameters.AddWithValue("@pcode", txtPcode.Text);
-                    cm.Parameters.AddWithValue("@barcode", txtBarcode.Text);
-                    cm.Parameters.AddWithValue("@pdesc", txtPrName.Text);
-                    cm.Parameters.AddWithValue("@bid", cboBrand.SelectedValue);
-                    cm.Parameters.AddWithValue("@cid", cboCategory.SelectedValue);
-                    cm.Parameters.AddWithValue("@price", double.Parse(txtPrice.Text));
-                    cm.Parameters.AddWithValue("@reorder", UDReOrder.Value);
+                    cm = new SqlCommand("INSERT INTO Product(Pr_Barcode, Pr_Title, Pr_Brand, Pr_Category, Pr_Price, Pr_PriceOpt, Pr_Reorder)VALUES (@Pr_Barcode,@Pr_Title,@Pr_Brand,@Pr_Category,@Pr_Price, @Pr_Price, @Pr_Reorder)", cn);
+                    cm.Parameters.AddWithValue("@Pr_Barcode", txtBarcode.Text);
+                    cm.Parameters.AddWithValue("@Pr_Title", txtPrName.Text);
+                    cm.Parameters.AddWithValue("@Pr_Brand", cboBrand.SelectedValue);
+                    cm.Parameters.AddWithValue("@Pr_Category", cboCategory.SelectedValue);
+                    cm.Parameters.AddWithValue("@Pr_Price", double.Parse(txtPrice.Text));
+                    cm.Parameters.AddWithValue("@Pr_Reorder", UDReOrder.Value);
                     cn.Open();
                     cm.ExecuteNonQuery();
                     cn.Close();
@@ -131,10 +131,10 @@ namespace POSales
             {
                 if (MessageBox.Show("Ви хочете оновити дані про продукт?", "Оновити дані", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    cm = new SqlCommand("UPDATE tbProduct SET barcode=@barcode,pdesc=@pdesc,bid=@bid,cid=@cid,price=@price, reorder=@reorder WHERE pcode LIKE @pcode", cn);
-                    cm.Parameters.AddWithValue("@pcode", txtPcode.Text);
+                    cm = new SqlCommand("UPDATE Product SET Pr_Barcode=@barcode,Pr_Title=@Pr_Title,Pr_Brand=@bid,PR_Category=@cid,Pr_Price=@price, Pr_Reorder=@reorder WHERE Pr_Id = @Pr_id", cn);
+                    cm.Parameters.AddWithValue("@Pr_Id", txtPcode.Text);
                     cm.Parameters.AddWithValue("@barcode", txtBarcode.Text);
-                    cm.Parameters.AddWithValue("@pdesc", txtPrName.Text);
+                    cm.Parameters.AddWithValue("@Pr_Title", txtPrName.Text);
                     cm.Parameters.AddWithValue("@bid", cboBrand.SelectedValue);
                     cm.Parameters.AddWithValue("@cid", cboCategory.SelectedValue);
                     cm.Parameters.AddWithValue("@price", double.Parse(txtPrice.Text));

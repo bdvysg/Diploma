@@ -23,18 +23,17 @@ namespace POSales
             cn = new SqlConnection(dbcon.myConnection());
             LoadCategory();
         }
-        //Data retrieve from tbCategory to dgvCategory on Category form
         public void LoadCategory()
         {
             int i = 0;
             dgvCategory.Rows.Clear();
             cn.Open();
-            cm = new SqlCommand("SELECT * FROM tbCategory ORDER BY category", cn);
+            cm = new SqlCommand("SELECT * FROM Category ORDER BY Catg_Title", cn);
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
                 i++;
-                dgvCategory.Rows.Add(i, dr["id"].ToString(), dr["category"].ToString());
+                dgvCategory.Rows.Add(i, dr["Catg_Id"].ToString(), dr["Catg_Title"].ToString());
             }
             dr.Close();
             cn.Close();
@@ -51,13 +50,13 @@ namespace POSales
             string colName = dgvCategory.Columns[e.ColumnIndex].Name;
             if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви хочете видалити запис?", "Видалити запис", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("DELETE FROM tbCategory WHERE id LIKE '" + dgvCategory[1, e.RowIndex].Value.ToString() + "'", cn);
+                    cm = new SqlCommand("DELETE FROM Category WHERE Catg_Id = " + dgvCategory[1, e.RowIndex].Value.ToString(), cn);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Category has been successfully deleted.", "Point Of Sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Запис було успішно видалено.", "Market", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -68,6 +67,7 @@ namespace POSales
                 module.txtCategory.Text = dgvCategory[2, e.RowIndex].Value.ToString();
                 module.btnSave.Enabled = false;
                 module.btnUpdate.Enabled = true;
+                module.Text = "Редагування категорії";
                 module.ShowDialog();
             }
             LoadCategory();

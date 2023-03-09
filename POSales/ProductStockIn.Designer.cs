@@ -189,9 +189,9 @@ namespace POSales
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "Кількість";
+            this.Column8.HeaderText = "Залишки на складі";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 93;
+            this.Column8.Width = 174;
             // 
             // Select
             // 

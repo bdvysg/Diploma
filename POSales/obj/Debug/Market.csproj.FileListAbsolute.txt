@@ -102,3 +102,4 @@ C:\base\stud\actual\Supermarket CRM\POSales\bin\Debug\zh-CHS\Microsoft.ReportVie
 C:\base\stud\actual\Supermarket CRM\POSales\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\POSales.Properties.Resources.resources
 C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\Market.csproj.CopyComplete
+C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\POSales.StockInModule.resources

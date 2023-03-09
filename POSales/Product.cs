@@ -107,7 +107,7 @@ namespace POSales
                 product.txtPcode.Enabled = false;
                 product.btnSave.Enabled = false;
                 product.btnUpdate.Enabled = true;
-                product.Text = "Редагувати товар";
+                product.label1.Text = "Редагувати товар";
                 product.ShowDialog();
             }
             else if (colName == "Delete")

@@ -109,9 +109,9 @@ namespace POSales
         {
             StockIn stock = new StockIn(main);
             main.openChildForm(stock);
-            ProductStockIn stockIn = new ProductStockIn(stock);
-            stock.ProductForSupplier(lblPcode.Text);
-            stockIn.addStockIn(lblPcode.Text);
+            //ProductStockIn stockIn = new ProductStockIn(stock);
+            //stock.ProductForSupplier(lblPcode.Text);
+           // stockIn.addStockIn(lblPcode.Text);
         }
 
         private Color SelectThemeColor()

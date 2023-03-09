@@ -355,7 +355,6 @@ namespace POSales
 
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.PictureBox picClose;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label2;
@@ -376,5 +375,6 @@ namespace POSales
         private System.Windows.Forms.PictureBox imgProduct;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtQuantity;
+        public System.Windows.Forms.Label label1;
     }
 }

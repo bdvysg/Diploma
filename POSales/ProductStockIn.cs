@@ -18,11 +18,11 @@ namespace POSales
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;
         string stitle = "Market";
-        StockIn stockIn;
+        StockInModule stockIn;
         int StartIndex = 0;
         int RowCount = 25;
         int i = 0;
-        public ProductStockIn(StockIn stk)
+        public ProductStockIn(StockInModule stk)
         {
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
@@ -32,6 +32,8 @@ namespace POSales
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            stockIn.LoadDoc(stockIn.textBox1.Text);
+            stockIn.Select();
             this.Dispose();
         }
 
@@ -71,41 +73,37 @@ namespace POSales
             string colName = dgvProduct.Columns[e.ColumnIndex].Name;
             if (colName == "Select")
             {
-               // if(stockIn.txtStockInBy.Text == string.Empty)
-               // {
-                    //MessageBox.Show("Please enter stock in by name", stitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //stockIn.txtStockInBy.Focus();
-                    //this.Dispose();                                        
-                //}
-
                 if (MessageBox.Show("Додати цей товар?", stitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     addStockIn(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    MessageBox.Show("Товар успішно додано", stitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
             }
         }
 
-        public void addStockIn(string pcode)
+        public void addStockIn(string productId)
         {
             try
             {
                 cn.Open();
-                cm = new SqlCommand("INSERT INTO StockIn (refno, pcode, sdate, stockinby, supplierid)VALUES (@refno, @pcode, @sdate, @stockinby, @supplierid)", cn);
-                cm.Parameters.AddWithValue("@refno", stockIn.txtRefNo.Text);
-                cm.Parameters.AddWithValue("@pcode", pcode);
-                cm.Parameters.AddWithValue("@sdate", stockIn.dtStockIn.Value);
-                cm.Parameters.AddWithValue("@stockinby", stockIn.txtStockInBy.Text);
-                cm.Parameters.AddWithValue("@supplierid", stockIn.lblId.Text);
-                cm.ExecuteNonQuery();
-                cn.Close();
-                stockIn.LoadStockIn();
-                
+                cm = new SqlCommand("INSERT INTO StockInProduct (Sip_Doc, Sip_Product) VALUES (@id, @productId)", cn);
+                cm.Parameters.AddWithValue("@id", stockIn.textBox1.Text);
+                cm.Parameters.AddWithValue("@productId", productId);
+                if (cm.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Товар успішно додано", stitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Сталася помилка при додавані товару", stitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, stitle);
+            }
+            finally
+            {
+                cn.Close();
             }
         }
 
@@ -126,7 +124,7 @@ namespace POSales
         {
             ProductModule product = new ProductModule();
             product.LoadProduct(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
-
+            product.label1.Text = "Інформація про товар";
             product.txtPcode.Enabled = false;
             product.btnSave.Enabled = false;
             product.btnUpdate.Enabled = true;

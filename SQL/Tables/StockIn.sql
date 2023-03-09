@@ -9,31 +9,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE dbo.StockIn(
-	Sti_id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Sti_Doc varchar(50) NULL,
+	Sti_Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	Sti_Date datetime NULL,
 	Sti_StockInBy varchar(50) NULL,
 	Sti_Status int DEFAULT(1) NOT NULL,
 	Sti_SupplierId int NULL,
+  Sti_IsConfirmed bit DEFAULT(0) NOT NULL
+
+  FOREIGN KEY(Sti_SupplierId) REFERENCES dbo.Supplier (Sup_Id),
+  FOREIGN KEY(Sti_Status) REFERENCES dbo.StockInStatus (Sis_Id)
 )
-GO
-
-ALTER TABLE dbo.StockIn ADD  CONSTRAINT DF_StockIn_qty  DEFAULT ((0)) FOR Sti_qty
-GO
-
-ALTER TABLE dbo.StockIn  WITH CHECK ADD  CONSTRAINT FK_StockIn_Supplier FOREIGN KEY(Sti_SupplierId)
-REFERENCES dbo.tbSupplier (Sup_Id)
-GO
-
-ALTER TABLE dbo.StockIn CHECK CONSTRAINT FK_StockIn_Supplier
-GO
-
-ALTER TABLE dbo.StockIn  WITH CHECK ADD  CONSTRAINT FK_StockIn_StockInStatus FOREIGN KEY(Sti_Status)
-REFERENCES dbo.StockInStatus (Sti_Id)
-GO
-
-ALTER TABLE dbo.StockIn CHECK CONSTRAINT FK_StockIn_StockInStatus
-GO
-
-ALTER TABLE dbo.StockIn ADD Sti_IsConfirmed bit DEFAULT(0) NOT NULL
 GO

@@ -262,7 +262,7 @@ namespace POSales
             this.btnStockAdjustment.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnStockAdjustment.Size = new System.Drawing.Size(183, 45);
             this.btnStockAdjustment.TabIndex = 5;
-            this.btnStockAdjustment.Text = "Операції";
+            this.btnStockAdjustment.Text = "Списання";
             this.btnStockAdjustment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockAdjustment.UseVisualStyleBackColor = true;
             this.btnStockAdjustment.Click += new System.EventHandler(this.btnStockAdjustment_Click);

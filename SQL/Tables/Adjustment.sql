@@ -10,12 +10,10 @@ GO
 
 CREATE TABLE dbo.Adjustment(
 	Adj_Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Adj_Referenceno varchar(50) NULL,
 	Adj_Product int NOT NULL,
 	Adj_Qty int DEFAULT (0) NOT NULL,
-	Adj_Action varchar(50) NULL,
 	Adj_Remarks varchar(50) NULL,
-	Adj_Date date NULL,
+	Adj_Date date DEFAULT(GETDATE()) NOT NULL,
 	Adj_User varchar(50) NULL,
 ) 
 GO

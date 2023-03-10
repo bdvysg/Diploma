@@ -30,7 +30,7 @@ namespace POSales
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Adjustments));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtSearch = new MetroFramework.Controls.MetroTextBox();
@@ -38,16 +38,12 @@ namespace POSales
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
-            this.cbAction = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblPcode = new System.Windows.Forms.Label();
-            this.lblRefNo = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvAdjustment = new System.Windows.Forms.DataGridView();
@@ -56,9 +52,11 @@ namespace POSales
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Select = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -139,7 +137,7 @@ namespace POSales
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(7, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 43);
+            this.label1.Size = new System.Drawing.Size(135, 43);
             this.label1.TabIndex = 0;
             this.label1.Text = "Операції з залишками";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -148,16 +146,12 @@ namespace POSales
             // 
             this.panel2.Controls.Add(this.txtRemark);
             this.panel2.Controls.Add(this.txtQty);
-            this.panel2.Controls.Add(this.cbAction);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lblDesc);
             this.panel2.Controls.Add(this.lblPcode);
-            this.panel2.Controls.Add(this.lblRefNo);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lblUsername);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -182,18 +176,6 @@ namespace POSales
             this.txtQty.Size = new System.Drawing.Size(307, 26);
             this.txtQty.TabIndex = 4;
             // 
-            // cbAction
-            // 
-            this.cbAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbAction.FormattingEnabled = true;
-            this.cbAction.Items.AddRange(new object[] {
-            "Remove From Inventory",
-            "Add To Inventory"});
-            this.cbAction.Location = new System.Drawing.Point(716, 26);
-            this.cbAction.Name = "cbAction";
-            this.cbAction.Size = new System.Drawing.Size(307, 28);
-            this.cbAction.TabIndex = 3;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -217,21 +199,11 @@ namespace POSales
             // 
             this.lblPcode.AutoSize = true;
             this.lblPcode.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPcode.Location = new System.Drawing.Point(388, 66);
+            this.lblPcode.Location = new System.Drawing.Point(115, 72);
             this.lblPcode.Name = "lblPcode";
             this.lblPcode.Size = new System.Drawing.Size(111, 20);
             this.lblPcode.TabIndex = 2;
             this.lblPcode.Text = "Product code";
-            // 
-            // lblRefNo
-            // 
-            this.lblRefNo.AutoSize = true;
-            this.lblRefNo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefNo.Location = new System.Drawing.Point(138, 66);
-            this.lblRefNo.Name = "lblRefNo";
-            this.lblRefNo.Size = new System.Drawing.Size(54, 20);
-            this.lblRefNo.TabIndex = 2;
-            this.lblRefNo.Text = "RefNo";
             // 
             // label7
             // 
@@ -254,33 +226,14 @@ namespace POSales
             this.label6.Text = "Кількість :";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(616, 29);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 20);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Операція :";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(285, 66);
+            this.label4.Location = new System.Drawing.Point(12, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 2;
             this.label4.Text = "Код товару :";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Комер операції :";
             // 
             // lblUsername
             // 
@@ -306,14 +259,14 @@ namespace POSales
             this.dgvAdjustment.AllowUserToAddRows = false;
             this.dgvAdjustment.BackgroundColor = System.Drawing.Color.White;
             this.dgvAdjustment.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAdjustment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdjustment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAdjustment.ColumnHeadersHeight = 30;
             this.dgvAdjustment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAdjustment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -322,9 +275,11 @@ namespace POSales
             this.Column3,
             this.Column4,
             this.Column5,
+            this.Column9,
             this.Column6,
             this.Column7,
             this.Column8,
+            this.Column10,
             this.Select});
             this.dgvAdjustment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdjustment.EnableHeadersVisualStyles = false;
@@ -334,6 +289,7 @@ namespace POSales
             this.dgvAdjustment.Size = new System.Drawing.Size(1035, 367);
             this.dgvAdjustment.TabIndex = 6;
             this.dgvAdjustment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdjustment_CellContentClick);
+            this.dgvAdjustment.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvAdjustment_Scroll);
             // 
             // Column1
             // 
@@ -351,15 +307,16 @@ namespace POSales
             // 
             // Column3
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Штрих-код";
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.HeaderText = "Назва";
+            this.Column3.MinimumWidth = 50;
             this.Column3.Name = "Column3";
-            this.Column3.Width = 111;
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Опис";
+            this.Column4.HeaderText = "Кількість";
+            this.Column4.MinimumWidth = 25;
             this.Column4.Name = "Column4";
             // 
             // Column5
@@ -368,6 +325,11 @@ namespace POSales
             this.Column5.HeaderText = "Виробник";
             this.Column5.Name = "Column5";
             this.Column5.Width = 106;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Штрих-код";
+            this.Column9.Name = "Column9";
             // 
             // Column6
             // 
@@ -386,9 +348,14 @@ namespace POSales
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "Наявність на складі";
+            this.Column8.HeaderText = "Критичний залишок";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 176;
+            this.Column8.Width = 178;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Залишок";
+            this.Column10.Name = "Column10";
             // 
             // Select
             // 
@@ -431,16 +398,12 @@ namespace POSales
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.TextBox txtQty;
-        private System.Windows.Forms.ComboBox cbAction;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Label lblPcode;
-        private System.Windows.Forms.Label lblRefNo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dgvAdjustment;
@@ -449,9 +412,11 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewImageColumn Select;
     }
 }

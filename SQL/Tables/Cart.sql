@@ -14,7 +14,7 @@ CREATE TABLE dbo.Cart(
 	Crt_Product int NOT NULL,
 	Crt_Price decimal(18, 2) NULL,
 	Crt_Qty int NULL,
-	Crt_Disc_percent decimal(18, 2) NULL,
+	Crt_Disc_Percent decimal(18, 2) NULL,
 	Crt_Discount decimal(18, 2) NULL,
 	Crt_Total decimal(18, 2) NULL,
 	Crt_Date date NULL,

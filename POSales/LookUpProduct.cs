@@ -18,6 +18,9 @@ namespace POSales
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;        
         Cashier cashier;
+        int StartIndex = 0;
+        int RowCount = 25;
+        int i = 0;
 
         public LookUpProduct(Cashier cash)
         {
@@ -34,18 +37,37 @@ namespace POSales
 
         public void LoadProduct()
         {
-            int i = 0;
+            i = 0;
+            StartIndex = 0;
             dgvProduct.Rows.Clear();
-            cm = new SqlCommand("SELECT p.pcode, p.barcode, p.pdesc, b.brand, c.category, p.price, p.qty FROM tbProduct AS p INNER JOIN tbBrand AS b ON b.id = p.bid INNER JOIN tbCategory AS c on c.id = p.cid WHERE CONCAT(p.pdesc, b.brand, c.category) LIKE '%" + txtSearch.Text + "%'", cn);
-            cn.Open();
-            dr = cm.ExecuteReader();
-            while (dr.Read())
+            try
             {
-                i++;
-                dgvProduct.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                cn.Open();
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                           dr[4].ToString(),
+                                           dr[1].ToString(),
+                                           dr[2].ToString(),
+                                           dr[3].ToString(),
+                                           dr[5].ToString(),
+                                           dr[6].ToString(),
+                                           dr[8].ToString()
+                                        );
+                }
             }
-            dr.Close();
-            cn.Close();
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
         }
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,7 +76,7 @@ namespace POSales
             if (colName == "Select")
             {
                 Qty qty = new Qty(cashier);
-                qty.ProductDetails(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString(), double.Parse(dgvProduct.Rows[e.RowIndex].Cells[6].Value.ToString()), cashier.lblTranNo.Text, int.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString()));
+                qty.ProductDetails(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString(), double.Parse(dgvProduct.Rows[e.RowIndex].Cells[7].Value.ToString()), cashier.lblTranNo.Text, int.Parse(dgvProduct.Rows[e.RowIndex].Cells[8].Value.ToString()));
                 qty.ShowDialog();
             }
         }
@@ -69,6 +91,44 @@ namespace POSales
             if (e.KeyCode == Keys.Escape)
             {
                 this.Dispose();
+            }
+        }
+
+        private void dgvProduct_Scroll(object sender, ScrollEventArgs e)
+        {
+            int displayedRows = dgvProduct.DisplayedRowCount(true);
+            int lastVisibleRowIndex = dgvProduct.FirstDisplayedScrollingRowIndex + displayedRows - 1;
+            try
+            {
+                if (lastVisibleRowIndex >= dgvProduct.RowCount - 1)
+                {
+                    StartIndex += 25;
+                    cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                    cn.Open();
+                    dr = cm.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        i++;
+                        dgvProduct.Rows.Add(i, dr[0].ToString(),
+                                               dr[4].ToString(),
+                                               dr[1].ToString(),
+                                               dr[2].ToString(),
+                                               dr[3].ToString(),
+                                               dr[5].ToString(),
+                                               dr[6].ToString(),
+                                               dr[8].ToString()
+                                            );
+                    }
+                }
+            }
+            catch( Exception ex ) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
             }
         }
     }

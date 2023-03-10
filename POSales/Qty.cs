@@ -50,18 +50,21 @@ namespace POSales
                     int cart_qty = 0;
                     bool found = false;
                     cn.Open();
-                    cm = new SqlCommand("Select * from tbCart Where transno = @transno and pcode = @pcode", cn);
+                    cm = new SqlCommand("Select * from Cart Where Crt_Transno = @transno and Crt_Product = @pcode", cn);
                     cm.Parameters.AddWithValue("@transno", transno);
                     cm.Parameters.AddWithValue("@pcode", pcode);
                     dr = cm.ExecuteReader();
                     dr.Read();
                     if (dr.HasRows)
                     {
-                        id = dr["id"].ToString();
-                        cart_qty = int.Parse(dr["qty"].ToString());
+                        id = dr["Crt_Id"].ToString();
+                        cart_qty = int.Parse(dr["Crt_Qty"].ToString());
                         found = true;
                     }
-                    else found = false;
+                    else 
+                    { 
+                        found = false; 
+                    }
                     dr.Close();
                     cn.Close();
 
@@ -69,11 +72,11 @@ namespace POSales
                     {
                         if (qty < (int.Parse(txtQty.Text) + cart_qty))
                         {
-                            MessageBox.Show("Unable to procced. Remaining qty on hand is" + qty, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Помилка. Неможливо зарахувати товару більше ніж є в наявності - " + qty, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         cn.Open();
-                        cm = new SqlCommand("Update tbCart set qty = (qty + " + int.Parse(txtQty.Text) + ")Where id= '" + id + "'", cn);
+                        cm = new SqlCommand("Update Cart set Crt_Qty = Crt_Qty + " + int.Parse(txtQty.Text) + " Where Crt_Id= " + id, cn);
                         cm.ExecuteReader();
                         cn.Close();
                         cashier.txtBarcode.Clear();
@@ -85,17 +88,16 @@ namespace POSales
                     {
                         if (qty < (int.Parse(txtQty.Text) + cart_qty))
                         {
-                            MessageBox.Show("Unable to procced. Remaining qty on hand is" + qty, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Помилка. Неможливо зарахувати товару більше ніж є в наявності - " + qty, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         cn.Open();
-                        cm = new SqlCommand("INSERT INTO tbCart(transno, pcode, price, qty, sdate, cashier)VALUES(@transno, @pcode, @price, @qty, @sdate, @cashier)", cn);
+                        cm = new SqlCommand("INSERT INTO Cart(Crt_Transno, Crt_Product, Crt_Price, Crt_Qty, Crt_Date, Crt_Cashier) VALUES(@transno, @pcode, @price, @qty, @sdate, (SELECT TOP 1 Emp_Id FROM Employee INNER JOIN [User] ON Emp_Id = Usr_Employee WHERE Usr_Username = '" + cashier.lblUsername.Text + "'))", cn);
                         cm.Parameters.AddWithValue("@transno", transno);
                         cm.Parameters.AddWithValue("@pcode", pcode);
                         cm.Parameters.AddWithValue("@price", price);
                         cm.Parameters.AddWithValue("@qty", int.Parse(txtQty.Text));
                         cm.Parameters.AddWithValue("@sdate", DateTime.Now);
-                        cm.Parameters.AddWithValue("@cashier", cashier.lblUsername.Text);
                         cm.ExecuteNonQuery();
                         cn.Close();
                         cashier.txtBarcode.Clear();

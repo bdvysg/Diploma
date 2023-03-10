@@ -125,7 +125,7 @@ namespace POSales
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(200, 50);
             this.btnLogout.TabIndex = 11;
-            this.btnLogout.Text = " Logout";
+            this.btnLogout.Text = "Вийти";
             this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -142,7 +142,7 @@ namespace POSales
             this.btnPass.Name = "btnPass";
             this.btnPass.Size = new System.Drawing.Size(200, 50);
             this.btnPass.TabIndex = 10;
-            this.btnPass.Text = " Change Password";
+            this.btnPass.Text = "Змінити пароль";
             this.btnPass.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPass.UseVisualStyleBackColor = true;
             this.btnPass.Click += new System.EventHandler(this.btnPass_Click);
@@ -159,7 +159,7 @@ namespace POSales
             this.btnDSales.Name = "btnDSales";
             this.btnDSales.Size = new System.Drawing.Size(200, 50);
             this.btnDSales.TabIndex = 9;
-            this.btnDSales.Text = " Daily Sales";
+            this.btnDSales.Text = "Продаж за день";
             this.btnDSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDSales.UseVisualStyleBackColor = true;
             this.btnDSales.Click += new System.EventHandler(this.btnDSales_Click);
@@ -177,7 +177,7 @@ namespace POSales
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(200, 50);
             this.btnClear.TabIndex = 8;
-            this.btnClear.Text = " Clear Cart";
+            this.btnClear.Text = "Очистити кошик";
             this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -230,7 +230,7 @@ namespace POSales
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(200, 50);
             this.btnSearch.TabIndex = 5;
-            this.btnSearch.Text = " Search Product";
+            this.btnSearch.Text = "Знайти продукт";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -247,7 +247,7 @@ namespace POSales
             this.btnNTran.Name = "btnNTran";
             this.btnNTran.Size = new System.Drawing.Size(200, 50);
             this.btnNTran.TabIndex = 4;
-            this.btnNTran.Text = " New Transaction";
+            this.btnNTran.Text = "Нова транзакція";
             this.btnNTran.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNTran.UseVisualStyleBackColor = true;
             this.btnNTran.Click += new System.EventHandler(this.btnNTran_Click);
@@ -467,9 +467,9 @@ namespace POSales
             this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(9, 216);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 20);
+            this.label6.Size = new System.Drawing.Size(88, 20);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Barcode";
+            this.label6.Text = "Штрих-код";
             // 
             // lblDate
             // 
@@ -486,9 +486,9 @@ namespace POSales
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 152);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 20);
+            this.label5.Size = new System.Drawing.Size(46, 20);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Date";
+            this.label5.Text = "Дата";
             // 
             // lblTranNo
             // 
@@ -505,9 +505,9 @@ namespace POSales
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(9, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
+            this.label2.Size = new System.Drawing.Size(107, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Transaction No";
+            this.label2.Text = "Транзакція №";
             // 
             // lblDisplayTotal
             // 

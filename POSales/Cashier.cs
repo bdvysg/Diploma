@@ -22,7 +22,7 @@ namespace POSales
         string id;
         string price;
             
-        string stitle = "Point Of Sales";
+        string stitle = "Market";
         public Cashier()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace POSales
 
         private void picClose_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Exit Application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Вийти з програми?", "Вихід", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -134,22 +134,22 @@ namespace POSales
         {
             try
             {
-                Boolean hascart = false;
+                bool hascart = false;
                 int i = 0;
                 double total = 0;
                 double discount = 0;
                 dgvCash.Rows.Clear();
                 cn.Open();
-                cm = new SqlCommand("SELECT c.id, c.pcode, p.pdesc, c.price, c.qty, c.disc, c.total FROM tbCart AS c INNER JOIN tbProduct AS p ON c.pcode=p.pcode WHERE c.transno LIKE @transno and c.status LIKE 'Pending'", cn);
+                cm = new SqlCommand("SELECT c.Crt_Id, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total FROM Cart AS c INNER JOIN Product AS p ON c.Crt_Product = p.Pr_id WHERE c.Crt_Transno LIKE @transno and c.Crt_Status = 1", cn);
                 cm.Parameters.AddWithValue("@transno", lblTranNo.Text);
                 dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
 
                     i++;
-                    total += Convert.ToDouble(dr["total"].ToString());
-                    discount += Convert.ToDouble(dr["disc"].ToString());
-                    dgvCash.Rows.Add(i, dr["id"].ToString(), dr["pcode"].ToString(), dr["pdesc"].ToString(), dr["price"].ToString(), dr["qty"].ToString(), dr["disc"].ToString(), double.Parse(dr["total"].ToString()).ToString("#,##0.00"));//
+                    total += Convert.ToDouble(dr["Crt_Total"].ToString());
+                    discount += Convert.ToDouble(dr["Crt_Discount"].ToString());
+                    dgvCash.Rows.Add(i, dr["Crt_Id"].ToString(), dr["Crt_Product"].ToString(), dr["Pr_Title"].ToString(), dr["Crt_Price"].ToString(), dr["Crt_Qty"].ToString(), dr["Crt_Discount"].ToString(), double.Parse(dr["Crt_Total"].ToString()).ToString("#,##0.00"));
                     hascart = true;
                 }
                 dr.Close();
@@ -171,7 +171,7 @@ namespace POSales
         {
             double discount = double.Parse(lblDiscount.Text);
             double sales = double.Parse(lblSaleTotal.Text) - discount;
-            double vat = sales * 0.12;//VAT: 12% of VAT Payable (Output Tax less Input Tax)
+            double vat = sales * 0.12;
             double vatable = sales - vat;
 
             lblVat.Text = vat.ToString("#,##0.00");
@@ -191,7 +191,7 @@ namespace POSales
                 int count;
                 string transno;
                 cn.Open();
-                cm = new SqlCommand("SELECT TOP 1 transno FROM tbCart WHERE transno LIKE '" + sdate + "%' ORDER BY id desc", cn);
+                cm = new SqlCommand("SELECT TOP 1 Crt_Transno FROM Cart WHERE Crt_Transno LIKE '" + sdate + "%' ORDER BY Crt_Id desc", cn);
                 dr = cm.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)
@@ -229,7 +229,7 @@ namespace POSales
                     double _price;
                     int _qty;
                     cn.Open();
-                    cm = new SqlCommand("SELECT * FROM tbProduct WHERE barcode LIKE '" + txtBarcode.Text + "'", cn);
+                    cm = new SqlCommand("SELECT * FROM Product INNER  WHERE Pr_Barcode LIKE '" + txtBarcode.Text + "'", cn);
                     dr = cm.ExecuteReader();
                     dr.Read();
                     if(dr.HasRows)
@@ -397,7 +397,7 @@ namespace POSales
 
         private void Cashier_Load(object sender, EventArgs e)
         {
-            Noti();
+            //Noti();
         }
 
         private void Cashier_FormClosed(object sender, FormClosedEventArgs e)

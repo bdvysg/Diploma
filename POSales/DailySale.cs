@@ -35,9 +35,9 @@ namespace POSales
         public void LoadCashier()
         {
             cboCashier.Items.Clear();
-            cboCashier.Items.Add("All Cashier");
+            cboCashier.Items.Add("Всі касири");
             cn.Open();
-            cm = new SqlCommand("SELECT * FROM tbUser WHERE role LIKE 'Cashier'", cn);
+            cm = new SqlCommand("SELECT Emp_Name + ' ' + Emp_Surname AS username FROM [User] INNER JOIN Employee ON Emp_Id = Usr_Employee WHERE Usr_Role = 1", cn);
             dr = cm.ExecuteReader();
             while(dr.Read())
             {
@@ -52,20 +52,20 @@ namespace POSales
             double total = 0;
             dgvSold.Rows.Clear();
             cn.Open();
-            if(cboCashier.Text=="All Cashier")
+            if(cboCashier.Text=="Всі касири")
             {
-                cm = new SqlCommand("select c.id, c.transno, c.pcode, p.pdesc, c.price, c.qty, c.disc, c.total from tbCart as c inner join tbProduct as p on c.pcode = p.pcode where status like 'Sold' and sdate between '" + dtFrom.Value + "' and '" + dtTo.Value + "'", cn);
+                cm = new SqlCommand("select c.Crt_Id, c.Crt_Transno, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total from Cart as c inner join Product as p on c.Crt_Product = p.Pr_Id where status = 2 and Crt_Date between '" + dtFrom.Value + "' and '" + dtTo.Value + "'", cn);
             }
             else
             {
-                cm = new SqlCommand("select c.id, c.transno, c.pcode, p.pdesc, c.price, c.qty, c.disc, c.total from tbCart as c inner join tbProduct as p on c.pcode = p.pcode where status like 'Sold' and sdate between '" + dtFrom.Value + "' and '" + dtTo.Value + "' and cashier like '" + cboCashier.Text + "'", cn);
+                cm = new SqlCommand("select c.Crt_Id, c.Crt_Transno, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total, Emp_Name + ' ' + Emp_Surname as Cashier from Cart as c inner join Employee ON Emp_Id = Crt_Employee inner join Product as p on c.Crt_Product = p.Pr_Id where status = 2 and Crt_Date between '" + dtFrom.Value + "' and '" + dtTo.Value + "'" + " and Cashier like '" + cboCashier.Text + "'", cn);
             }
             dr = cm.ExecuteReader();
             while(dr.Read())
             {
                 i++;
-                total += double.Parse(dr["total"].ToString());
-                dgvSold.Rows.Add(i, dr["id"].ToString(), dr["transno"].ToString(), dr["pcode"].ToString(), dr["pdesc"].ToString(), dr["price"].ToString(), dr["qty"].ToString(), dr["disc"].ToString(), dr["total"].ToString());
+                total += double.Parse(dr[7].ToString());
+                dgvSold.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
             }
             dr.Close();
             cn.Close();

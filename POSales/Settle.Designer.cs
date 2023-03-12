@@ -236,7 +236,7 @@ namespace POSales
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(218, 50);
             this.btnEnter.TabIndex = 2;
-            this.btnEnter.Text = "Enter";
+            this.btnEnter.Text = "Підтвердити";
             this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 

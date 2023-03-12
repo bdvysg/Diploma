@@ -92,7 +92,7 @@ namespace POSales
             {
                 if ((double.Parse(txtChange.Text) < 0) || (txtCash.Text.Equals("")))
                 {
-                    MessageBox.Show("Insufficient amount, Please enter the corret amount!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Введіть коректну суму!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
@@ -100,12 +100,12 @@ namespace POSales
                     for(int i=0; i< cashier.dgvCash.Rows.Count; i++ )
                     {
                         cn.Open();
-                        cm = new SqlCommand("UPDATE tbProduct SET qty = qty - " + int.Parse(cashier.dgvCash.Rows[i].Cells[5].Value.ToString()) + "WHERE pcode= '" + cashier.dgvCash.Rows[i].Cells[2].Value.ToString() + "'", cn);
+                        cm = new SqlCommand("UPDATE OnStock SET OnStk_Quantity = OnStk_Quantity - " + cashier.dgvCash.Rows[i].Cells[5].Value.ToString() + " WHERE OnStk_Product = " + cashier.dgvCash.Rows[i].Cells[2].Value.ToString(), cn);
                         cm.ExecuteNonQuery();
                         cn.Close();
 
                         cn.Open();
-                        cm = new SqlCommand("UPDATE tbCart SET status = 'Sold' WHERE id= '" + cashier.dgvCash.Rows[i].Cells[1].Value.ToString() + "'", cn);
+                        cm = new SqlCommand("UPDATE Cart SET Crt_Status = 2 WHERE Crt_Transno = '" + cashier.lblTranNo.Text + "'", cn);
                         cm.ExecuteNonQuery();
                         cn.Close();
                     }
@@ -113,7 +113,7 @@ namespace POSales
                     recept.LoadRecept(txtCash.Text, txtChange.Text);
                     recept.ShowDialog();
 
-                    MessageBox.Show("Payment successfully saved!", "Payment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Оплата успішно прошла!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cashier.GetTranNo();
                     cashier.LoadCart();
                     this.Dispose();

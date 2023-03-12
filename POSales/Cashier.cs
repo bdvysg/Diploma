@@ -81,13 +81,13 @@ namespace POSales
         private void btnClear_Click(object sender, EventArgs e)
         {
             slide(btnClear);
-            if (MessageBox.Show("Remove all items from cart?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Видалити всі товари с кошика?", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 cn.Open();
-                cm = new SqlCommand("Delete from tbCart where transno like'" + lblTranNo.Text + "'", cn);
+                cm = new SqlCommand("Delete from Cart where Crt_Transno like'" + lblTranNo.Text + "'", cn);
                 cm.ExecuteNonQuery();
                 cn.Close();
-                MessageBox.Show("All items has been successfully remove", "Remove item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Усі товари було успішно видаленно!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCart();
             }
         }
@@ -118,10 +118,10 @@ namespace POSales
             slide(btnLogout);
             if(dgvCash.Rows.Count > 0)
             {
-                MessageBox.Show("Unable to logout. Please cancel the transaction.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Неможливо вийти з програми. У вас не закритий кошик", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (MessageBox.Show("Logout Application?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Вийти с приложення?", "Вихід", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Hide();
                 Login login = new Login();
@@ -140,16 +140,16 @@ namespace POSales
                 double discount = 0;
                 dgvCash.Rows.Clear();
                 cn.Open();
-                cm = new SqlCommand("SELECT c.Crt_Id, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total FROM Cart AS c INNER JOIN Product AS p ON c.Crt_Product = p.Pr_id WHERE c.Crt_Transno LIKE @transno and c.Crt_Status = 1", cn);
+                cm = new SqlCommand("SELECT c.Crt_Id, c.Crt_Product, p.Pr_Title, c.Crt_Price, ISNULL(c.Crt_Qty, 0), ISNULL(c.Crt_Discount, 0), ISNULL(c.Crt_Total, 0) FROM Cart AS c INNER JOIN Product AS p ON c.Crt_Product = p.Pr_id WHERE c.Crt_Transno LIKE @transno and c.Crt_Status = 1", cn);
                 cm.Parameters.AddWithValue("@transno", lblTranNo.Text);
                 dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
 
                     i++;
-                    total += Convert.ToDouble(dr["Crt_Total"].ToString());
-                    discount += Convert.ToDouble(dr["Crt_Discount"].ToString());
-                    dgvCash.Rows.Add(i, dr["Crt_Id"].ToString(), dr["Crt_Product"].ToString(), dr["Pr_Title"].ToString(), dr["Crt_Price"].ToString(), dr["Crt_Qty"].ToString(), dr["Crt_Discount"].ToString(), double.Parse(dr["Crt_Total"].ToString()).ToString("#,##0.00"));
+                    total += Convert.ToDouble(dr[6].ToString());
+                    discount += Convert.ToDouble(dr[5].ToString());
+                    dgvCash.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()).ToString("#,##0.00"));
                     hascart = true;
                 }
                 dr.Close();
@@ -163,6 +163,11 @@ namespace POSales
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, stitle);
+            }
+            finally
+            {
+                cn.Close();
+                dr.Close();
             }
         
         }
@@ -263,15 +268,15 @@ namespace POSales
                 int cart_qty = 0;
                 bool found = false;
                 cn.Open();
-                cm = new SqlCommand("Select * from tbCart Where transno = @transno and pcode = @pcode", cn);
+                cm = new SqlCommand("Select * from Cart Where Crt_Transno = @transno and Crt_Product = @pcode", cn);
                 cm.Parameters.AddWithValue("@transno", lblTranNo.Text);
                 cm.Parameters.AddWithValue("@pcode", _pcode);
                 dr = cm.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)
                 {
-                    id = dr["id"].ToString();
-                    cart_qty = int.Parse(dr["qty"].ToString());
+                    id = dr["Crt_Id"].ToString();
+                    cart_qty = int.Parse(dr["Crt_Qty"].ToString());
                     found = true;
                 }
                 else found = false;
@@ -333,10 +338,10 @@ namespace POSales
 
             if (colName == "Delete")
             {
-                if (MessageBox.Show("Remove this item", "Remove item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Видалити даний товар?", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    dbcon.ExecuteQuery("Delete from tbCart where id like'" + dgvCash.Rows[e.RowIndex].Cells[1].Value.ToString() + "'");
-                    MessageBox.Show("Items has been successfully remove", "Remove item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dbcon.ExecuteQuery("Delete from Cart where Crt_Id  = " + dgvCash.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    MessageBox.Show("Товар було успішно видаленно.", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadCart();
                 }
             }
@@ -344,17 +349,17 @@ namespace POSales
             {
                 int i = 0;
                 cn.Open();
-                cm = new SqlCommand("SELECT SUM(qty) as qty FROM tbProduct WHERE pcode LIKE'" + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString() + "' GROUP BY pcode", cn);
+                cm = new SqlCommand("SELECT OnStk_Quantity FROM OnStock WHERE OnStk_Product = " + dgvCash.Rows[e.RowIndex].Cells[1].Value.ToString(), cn);
                 i = int.Parse(cm.ExecuteScalar().ToString());
                 cn.Close();
                 if (int.Parse(dgvCash.Rows[e.RowIndex].Cells[5].Value.ToString()) < i)
                 {
-                    dbcon.ExecuteQuery("UPDATE tbCart SET qty = qty + " + int.Parse(txtQty.Text) + " WHERE transno LIKE '" + lblTranNo.Text + "'  AND pcode LIKE '" + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString() + "'");
+                    dbcon.ExecuteQuery("UPDATE Cart SET Crt_Qty = Crt_Qty + " + int.Parse(txtQty.Text) + " WHERE Crt_Transno LIKE '" + lblTranNo.Text + "'  AND Crt_Product = " + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString());
                     LoadCart();
                 }
                 else
                 {
-                    MessageBox.Show("Remaining qty on hand is " + i + "!", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("В наявності лише " + i + " даного товару!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -362,17 +367,17 @@ namespace POSales
             {
                 int i = 0;
                 cn.Open();
-                cm = new SqlCommand("SELECT SUM(qty) as qty FROM tbCart WHERE pcode LIKE'" + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString() + "' GROUP BY pcode", cn);
+                cm = new SqlCommand("SELECT OnStk_Quantity FROM OnStock WHERE OnStk_Product = " + dgvCash.Rows[e.RowIndex].Cells[1].Value.ToString(), cn);
                 i = int.Parse(cm.ExecuteScalar().ToString());
                 cn.Close();
-                if (i > 1)
+                if (int.Parse(dgvCash.Rows[e.RowIndex].Cells[5].Value.ToString()) < i)
                 {
-                    dbcon.ExecuteQuery("UPDATE tbCart SET qty = qty - " + int.Parse(txtQty.Text) + " WHERE transno LIKE '" + lblTranNo.Text + "'  AND pcode LIKE '" + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString() + "'");
+                    dbcon.ExecuteQuery("UPDATE Cart SET Crt_Qty = Crt_Qty - " + int.Parse(txtQty.Text) + " WHERE Crt_Transno LIKE '" + lblTranNo.Text + "'  AND Crt_Product = " + dgvCash.Rows[e.RowIndex].Cells[2].Value.ToString());
                     LoadCart();
                 }
                 else
                 {
-                    MessageBox.Show("Remaining qty on cart is " + i + "!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("В наявності лише " + i + " даного товару!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }

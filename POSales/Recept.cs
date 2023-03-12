@@ -32,12 +32,12 @@ namespace POSales
         public void LoadStore()
         {
             cn.Open();
-            cm = new SqlCommand("SELECT * FROM tbStore", cn);
+            cm = new SqlCommand("SELECT * FROM Store", cn);
             dr = cm.ExecuteReader();
             dr.Read();
             if(dr.HasRows)
             {
-                store = dr["store"].ToString();
+                store = dr["Str_Title"].ToString();
                 address = dr["address"].ToString();
             }
             dr.Close();
@@ -62,7 +62,7 @@ namespace POSales
                 SqlDataAdapter da = new SqlDataAdapter();
 
                 cn.Open();
-                da.SelectCommand = new SqlCommand("SELECT c.id, c.transno, c.pcode, c.price, c.qty, c.disc, c.total, c.sdate, c.status, p.pdesc FROM tbCart AS c INNER JOIN tbProduct AS p ON p.pcode=c.pcode WHERE c.transno LIKE '"+cashier.lblTranNo.Text+"'",cn);
+                da.SelectCommand = new SqlCommand("SELECT c.Crt_id, c.Crt_Transno, c.Crt_Product, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total, c.Crt_Date, Crts_Name, p.Pr_title FROM Cart AS c INNER JOIN Product AS p ON p.Pr_Id = c.Crt_Product INNER JOIN CartStatus ON Crts_Id = Crt_Status WHERE c.Crt_Transno LIKE '"+cashier.lblTranNo.Text+"'",cn);
                 da.Fill(ds.Tables["dtRecept"]);
                 cn.Close();
 
@@ -74,8 +74,8 @@ namespace POSales
                 ReportParameter pChange = new ReportParameter("pChange", pchange);
                 ReportParameter pStore = new ReportParameter("pStore", store);
                 ReportParameter pAddress = new ReportParameter("pAddress", address);
-                ReportParameter pTransaction = new ReportParameter("pTransaction", "Invoice #: " + cashier.lblTranNo.Text);
-                ReportParameter pCashier = new ReportParameter("pCashier", cashier.lblUsername.Text);
+                ReportParameter pTransaction = new ReportParameter("pTransaction", "Транзакція #: " + cashier.lblTranNo.Text);
+                ReportParameter pCashier = new ReportParameter("pCashier", cashier.lblname.Text.Split('|')[0].Trim());
 
                 reportViewer1.LocalReport.SetParameters(pVatable);
                 reportViewer1.LocalReport.SetParameters(pVat);
@@ -90,11 +90,8 @@ namespace POSales
 
                 rptDataSourece = new ReportDataSource("DataSet1", ds.Tables["dtRecept"]);
                 reportViewer1.LocalReport.DataSources.Add(rptDataSourece);
-                reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
-                reportViewer1.ZoomMode = ZoomMode.Percent;
-                reportViewer1.ZoomPercent = 30;
-
-
+                reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.Normal);
+                reportViewer1.ZoomMode = ZoomMode.FullPage;
             }
             catch (Exception ex)
             {

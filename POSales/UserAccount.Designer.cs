@@ -37,7 +37,6 @@ namespace POSales
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.btnAccSave = new System.Windows.Forms.Button();
             this.btnAccCancel = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.txtRePass = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -71,6 +70,7 @@ namespace POSales
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -112,7 +112,7 @@ namespace POSales
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(32, 12);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(928, 452);
             this.metroTabControl1.TabIndex = 4;
             this.metroTabControl1.UseSelectable = true;
@@ -120,9 +120,9 @@ namespace POSales
             // metroTabPage1
             // 
             this.metroTabPage1.BackColor = System.Drawing.Color.White;
+            this.metroTabPage1.Controls.Add(this.cbName);
             this.metroTabPage1.Controls.Add(this.btnAccSave);
             this.metroTabPage1.Controls.Add(this.btnAccCancel);
-            this.metroTabPage1.Controls.Add(this.txtName);
             this.metroTabPage1.Controls.Add(this.cbRole);
             this.metroTabPage1.Controls.Add(this.txtRePass);
             this.metroTabPage1.Controls.Add(this.txtPass);
@@ -134,7 +134,7 @@ namespace POSales
             this.metroTabPage1.Controls.Add(this.label2);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 2;
+            this.metroTabPage1.HorizontalScrollbarSize = 1;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
             this.metroTabPage1.Size = new System.Drawing.Size(920, 410);
@@ -142,7 +142,7 @@ namespace POSales
             this.metroTabPage1.Text = "Створити акаунт";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 2;
+            this.metroTabPage1.VerticalScrollbarSize = 1;
             // 
             // btnAccSave
             // 
@@ -174,19 +174,12 @@ namespace POSales
             this.btnAccCancel.UseVisualStyleBackColor = false;
             this.btnAccCancel.Click += new System.EventHandler(this.btnAccCancel_Click);
             // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(265, 273);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(527, 26);
-            this.txtName.TabIndex = 5;
-            // 
             // cbRole
             // 
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
-            "Administrator",
-            "Cashier"});
+            "Адміністратор",
+            "Касир"});
             this.cbRole.Location = new System.Drawing.Point(265, 220);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(527, 28);
@@ -275,15 +268,15 @@ namespace POSales
             this.metroTabPage2.Controls.Add(this.label8);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.HorizontalScrollbarSize = 2;
+            this.metroTabPage2.HorizontalScrollbarSize = 1;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
             this.metroTabPage2.Size = new System.Drawing.Size(920, 410);
             this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Змінити акаунт";
+            this.metroTabPage2.Text = "Змінити пароль";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.VerticalScrollbarSize = 2;
+            this.metroTabPage2.VerticalScrollbarSize = 1;
             // 
             // lblUsername
             // 
@@ -393,7 +386,7 @@ namespace POSales
             this.metroTabPage3.Controls.Add(this.dgvUser);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 2;
+            this.metroTabPage3.HorizontalScrollbarSize = 1;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
             this.metroTabPage3.Size = new System.Drawing.Size(920, 410);
@@ -401,7 +394,7 @@ namespace POSales
             this.metroTabPage3.Text = "Активувати/Деактивувати акаунт";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 2;
+            this.metroTabPage3.VerticalScrollbarSize = 1;
             // 
             // gbUser
             // 
@@ -541,6 +534,14 @@ namespace POSales
             this.Column4.Name = "Column4";
             this.Column4.Width = 66;
             // 
+            // cbName
+            // 
+            this.cbName.FormattingEnabled = true;
+            this.cbName.Location = new System.Drawing.Point(265, 266);
+            this.cbName.Name = "cbName";
+            this.cbName.Size = new System.Drawing.Size(527, 28);
+            this.cbName.TabIndex = 33;
+            // 
             // UserAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -579,7 +580,6 @@ namespace POSales
         private System.Windows.Forms.Label label1;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.TextBox txtRePass;
         private System.Windows.Forms.TextBox txtPass;
@@ -615,5 +615,6 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ComboBox cbName;
     }
 }

@@ -30,13 +30,13 @@ namespace POSales
             try
             {
                 cn.Open();
-                cm = new SqlCommand("SELECT * FROM tbStore", cn);
+                cm = new SqlCommand("SELECT * FROM Store", cn);
                 dr = cm.ExecuteReader();
                 dr.Read();
                 if(dr.HasRows)
                 {
                     havestoreinfo = true;
-                    txtStName.Text = dr["store"].ToString();
+                    txtStName.Text = dr["Str_Title"].ToString();
                     txtAddress.Text = dr["address"].ToString();
                 }
                 else
@@ -49,7 +49,7 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, "Помилка");
             }
             
         }
@@ -58,21 +58,21 @@ namespace POSales
         {
             try
             {
-                if (MessageBox.Show("Save store details?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Зберегти зміни?", "Підтвердженяя", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     if(havestoreinfo)
                     {
-                        dbcon.ExecuteQuery("UPDATE tbStore SET store = '" + txtStName.Text + "', address= '" + txtAddress.Text + "'");
+                        dbcon.ExecuteQuery("UPDATE Store SET Str_Title = '" + txtStName.Text + "', address= '" + txtAddress.Text + "'");
                     }
                     else
                     {
-                        dbcon.ExecuteQuery("INSERT INTO tbStore (store,address) VALUES ('" + txtStName.Text + "','" + txtAddress.Text + "')");
+                        dbcon.ExecuteQuery("INSERT INTO Store (Str_Title,address) VALUES ('" + txtStName.Text + "','" + txtAddress.Text + "')");
                     }
-                MessageBox.Show("Store detail has been successfully saved!", "Save Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Дані було успішно оновлені!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, "Помилка");
             }
         }
 

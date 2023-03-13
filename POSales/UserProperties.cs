@@ -36,16 +36,15 @@ namespace POSales
         {
             try
             {
-                if ((MessageBox.Show("Are you sure you want to change this account properties?", "Change Properties", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                if ((MessageBox.Show("Ви хочете оновити дані про акаунт?", "Оновлення", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                  {
                     cn.Open();
-                    cm = new SqlCommand("UPDATE tbUser SET name=@name, role=@role, isactivate=@isactivate WHERE username='" + username + "'",cn);
-                    cm.Parameters.AddWithValue("@name", txtName.Text);
+                    cm = new SqlCommand("UPDATE [User] SET Usr_Role = CASE @role WHEN 'Адміністратор' THEN 2 WHEN 'Касир' THEN 1 END, Usr_IsActivate = CASE @isactivate WHEN 'Так' THEN 1 WHEN 'Ні' THEN 0 END WHERE Usr_Username='" + username + "'",cn);
                     cm.Parameters.AddWithValue("@role", cbRole.Text);
                     cm.Parameters.AddWithValue("@isactivate", cbActivate.Text);
                     cm.ExecuteNonQuery();
                     cn.Close();
-                    MessageBox.Show("Account properties has been successfully changed!", "Update Properties", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Дані аккаунта були успішно змінені!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     account.LoadUser();
                     this.Dispose();
                 }

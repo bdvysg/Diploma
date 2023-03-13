@@ -27,6 +27,7 @@ namespace POSales
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
             main = mn;
+            LoadEmployee();
             LoadUser();
         }
 
@@ -34,13 +35,13 @@ namespace POSales
         {
             int i = 0;
             dgvUser.Rows.Clear();
-            cm = new SqlCommand("SELECT * FROM tbUser", cn);
+            cm = new SqlCommand("SELECT Usr_Username, Emp_Name + ' ' + Emp_Surname AS Name, CASE Usr_IsActivate WHEN 1 THEN 'Так' WHEN 0 THEN 'Ні' END AS activate, Ur_Title FROM [User] INNER JOIN Employee ON Emp_Id = Usr_Employee INNER JOIN UserRole ON Usr_Role = Ur_Id", cn);
             cn.Open();
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
                 i++;
-                dgvUser.Rows.Add(i, dr[0].ToString(), dr[3].ToString(), dr[4].ToString(), dr[2].ToString());
+                dgvUser.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
             }
             dr.Close();
             cn.Close();
@@ -48,12 +49,20 @@ namespace POSales
 
         public void Clear()
         {
-            txtName.Clear();
+            //txtName.Clear();
             txtPass.Clear();
             txtRePass.Clear();
             txtUsername.Clear();
             cbRole.Text = "";
             txtUsername.Focus();
+        }
+        public void LoadEmployee()
+        {
+            cbName.Items.Clear();
+            cbName.DataSource = dbcon.getTable("SELECT Emp_Id, Emp_Name + ' ' + Emp_Surname AS name FROM Employee");
+            cbName.DisplayMember = "name";
+            cbName.ValueMember = "Emp_id";
+            cbName.SelectedIndex = -1;
         }
 
         private void btnAccSave_Click(object sender, EventArgs e)
@@ -62,25 +71,25 @@ namespace POSales
             {
                 if (txtPass.Text != txtRePass.Text)
                 {
-                    MessageBox.Show("Password did not March!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Паролі не співпадають!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 cn.Open();
-                cm = new SqlCommand("Insert into tbUser(username, password, role, name) Values (@username, @password, @role, @name)", cn);
+                cm = new SqlCommand("Insert into [User](Usr_Username, Usr_Password, Usr_Role, Usr_Employee) Values (@username, @password, CASE @role WHEN 'Касир' THEN 1 WHEN 'Адміністратор' THEN 2 END, ISNULL((SELECT TOP 1 Emp_Id FROM Employee WHERE Emp_Name + ' ' + Emp_Surname = @name), 1))", cn);
                 cm.Parameters.AddWithValue("@username", txtUsername.Text);
                 cm.Parameters.AddWithValue("@password", txtPass.Text);
                 cm.Parameters.AddWithValue("@role", cbRole.Text);
-                cm.Parameters.AddWithValue("@name", txtName.Text);
+                cm.Parameters.AddWithValue("@name", cbName.Text);
                 cm.ExecuteNonQuery();
                 cn.Close();
-                MessageBox.Show("New account has been successfully saved!", "Save Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Новий аккаунт було успішно створено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Clear();
                 LoadUser();
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message, "Warning");
+                MessageBox.Show(ex.Message, "Помилка");
             }
         }
 
@@ -95,21 +104,21 @@ namespace POSales
             {
                 if (txtCurPass.Text != main._pass )
                 {
-                    MessageBox.Show("Current password did not martch!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Неправильний поточний пароль!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if(txtNPass.Text != txtRePass2.Text)
                 {
-                    MessageBox.Show("Confirm new password did not martch!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Підтвердження паролю та пароль не співпадають!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                dbcon.ExecuteQuery("UPDATE tbUser SET password= '" + txtNPass.Text + "' WHERE username='" + lblUsername.Text + "'");
-                MessageBox.Show("Password has been succefully changed!", "Changed Password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dbcon.ExecuteQuery("UPDATE [User] SET Usr_Password = '" + txtNPass.Text + "' WHERE Usr_Username = '" + lblUsername.Text + "'");
+                MessageBox.Show("Пароль було успішно змінено!", "Зміна паролю", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, "Помилка");
             }
         }
 
@@ -141,25 +150,25 @@ namespace POSales
             {
                 btnRemove.Enabled = false;
                 btnResetPass.Enabled = false;
-                lblAccNote.Text = "To change your password, go to change password tag.";
+                lblAccNote.Text = "Щоб змінити пароль перейдіть до вкладти зміни паролю.";
 
             }
             else
             {
                 btnRemove.Enabled = true;
                 btnResetPass.Enabled = true;
-                lblAccNote.Text = "To change the password for " + username + ", click Reset Password.";
+                lblAccNote.Text = "Щоб змінити пароль для " + username + ", натисніть змінити пароль.";
             }
-            gbUser.Text = "Password For " + username;
+            gbUser.Text = "Пароль для " + username;
             
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if ((MessageBox.Show("You chose to remove this account from this Point Of Sales System's user list. \n\n Are you sure you want to remove '" + username + "' \\ '" + role + "'", "User Account", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+            if ((MessageBox.Show("Ви впевнені що хочете видалити данний акаунт", "Видалення акаунту", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
             {
-                dbcon.ExecuteQuery("DELETE FROM tbUser WHERE username = '" + username + "'");
-                MessageBox.Show("Account has been successfully deleted");
+                dbcon.ExecuteQuery("DELETE FROM [User] WHERE Usr_Username = '" + username + "'");
+                MessageBox.Show("Акаунт було успішно видалено!");
                 LoadUser();
             }
         }
@@ -173,8 +182,7 @@ namespace POSales
         private void btnProperties_Click(object sender, EventArgs e)
         {
             UserProperties properties = new UserProperties(this);
-            properties.Text = name +"\\"+ username +" Properties";
-            properties.txtName.Text = name;
+            properties.Text = name +"\\"+ username +" Налаштування";
             properties.cbRole.Text = role;
             properties.cbActivate.Text = accstatus;
             properties.username = username;

@@ -15,7 +15,8 @@ BEGIN
       ON i.Crt_Id = c.Crt_Id  
   COMMIT TRAN
     UPDATE Cart 
-    SET Crt_Total = (C.Crt_Price - C.Crt_Price * C.Crt_Discount) * C.Crt_Qty
+    SET Crt_Total = (C.Crt_Price - C.Crt_Discount) * C.Crt_Qty,
+        Crt_Date = GETDATE()
     FROM Cart C
     INNER JOIN inserted i
       ON i.Crt_Id = c.Crt_Id

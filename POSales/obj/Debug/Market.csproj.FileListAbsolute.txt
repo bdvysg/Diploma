@@ -104,3 +104,4 @@ C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\POSales.Properties.Resourc
 C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\Market.csproj.CopyComplete
 C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\POSales.StockInModule.resources
 C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\POSales.Client.resources
+C:\base\stud\actual\Supermarket CRM\POSales\obj\Debug\Market.csproj.ResolveComReference.cache

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,14 +17,13 @@ namespace POSales
         SqlConnection cn = new SqlConnection();
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();        
-        string stitle = "Point Of Sales";
+        string stitle = "Market";
         Cashier cashier;
         public Discount(Cashier cash)
         {
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
             cashier = cash;            
-            txtDiscount.Focus();
             this.KeyPreview = true;
         }
 
@@ -39,40 +39,47 @@ namespace POSales
             else if (e.KeyCode == Keys.Enter) btnSave.PerformClick();
         }
 
-        private void txtDiscount_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                double disc = double.Parse(txtTotalPrice.Text) * double.Parse(txtDiscount.Text) * 0.01;
-                txtDiscAmount.Text = disc.ToString("#,##0.00");
-            }
-            catch (Exception )
-            {
-                txtDiscAmount.Text = "0.00";
-            }
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show("Add discount? Click yes to confirm", stitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Додати знижку?", stitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cn.Open();
-                    cm = new SqlCommand("UPDATE tbCart SET disc_percent=@disc_percent WHERE id = @id", cn);                    
-                    cm.Parameters.AddWithValue("@disc_percent", double.Parse(txtDiscount.Text));
-                    cm.Parameters.AddWithValue("@id", int.Parse(lbId.Text));
-                    cm.ExecuteNonQuery();
-                    cn.Close();
-                    cashier.LoadCart();
-                    this.Dispose();
+                    cm = new SqlCommand("SELECT * FROM Client WHERE Cl_CardNumber = @card", cn);   
+                    cm.Parameters.AddWithValue("@card", txtCardNum.Text.Trim());
+                    var res = cm.ExecuteReader();
+                    if (res.HasRows)
+                    {
+                        cn.Close();
+                        cn.Open();
+                        cm = new SqlCommand("UPDATE Cart SET Crt_Disc_percent = 5 WHERE Crt_Transno = @transno", cn);
+                        cm.Parameters.AddWithValue("@transno", cashier.lblTranNo.Text);
+                        cm.ExecuteNonQuery();
+                        cashier.LoadCart();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не знайдено клієнта с даним номером картки!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                cn.Close();
                 MessageBox.Show(ex.Message, stitle);
             }
+            finally
+            {
+                cn.Close();
+                this.Dispose();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Client client = new Client();
+            client.Show();
         }
     }
 }

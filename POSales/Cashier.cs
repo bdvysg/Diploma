@@ -65,8 +65,6 @@ namespace POSales
         {
             slide(btnDiscount);
             Discount discount = new Discount(this);
-            discount.lbId.Text = id;
-            discount.txtTotalPrice.Text = price;
             discount.ShowDialog();            
         }
 
@@ -148,7 +146,7 @@ namespace POSales
 
                     i++;
                     total += Convert.ToDouble(dr[6].ToString());
-                    discount += Convert.ToDouble(dr[5].ToString());
+                    discount += Convert.ToDouble(dr[5].ToString()) * Convert.ToDouble(dr[4].ToString());
                     dgvCash.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()).ToString("#,##0.00"));
                     hascart = true;
                 }
@@ -175,7 +173,7 @@ namespace POSales
         public void GetCartTotal()
         {
             double discount = double.Parse(lblDiscount.Text);
-            double sales = double.Parse(lblSaleTotal.Text) - discount;
+            double sales = double.Parse(lblSaleTotal.Text);
             double vat = sales * 0.12;
             double vatable = sales - vat;
 

@@ -37,7 +37,7 @@ namespace POSales
                 string oldpass = dbcon.getPassword(lblUsername.Text);
                 if(oldpass != txtPass.Text)
                 {
-                    MessageBox.Show("Wrong password, please try again!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Невірний пароль, спробуйте знову!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
@@ -52,7 +52,7 @@ namespace POSales
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -63,21 +63,21 @@ namespace POSales
             {
                 if(txtNewPass.Text != txtComPass.Text)
                 {
-                    MessageBox.Show("New password and confirm password did not matched!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Паролі не співпадають!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    if(MessageBox.Show("Change password?","Confirm",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                    if(MessageBox.Show("Змінити пароль?","Підтвердити",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                     {
-                        dbcon.ExecuteQuery("UPDATE tbUser set password = '" + txtNewPass.Text + "' WHERE username = '" + lblUsername.Text + "'");
-                        MessageBox.Show("Password has been sucessfully update!", "Save Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dbcon.ExecuteQuery("UPDATE [User] set Usr_Password = '" + txtNewPass.Text + "' WHERE Usr_Username = '" + lblUsername.Text + "'");
+                        MessageBox.Show("Пароль було успішно оновлено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Dispose();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, "Помилка");
             }
         }
 

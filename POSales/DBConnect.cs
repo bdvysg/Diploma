@@ -53,12 +53,12 @@ namespace POSales
             string password = "";
             cn.ConnectionString = myConnection();
             cn.Open();
-            cm = new SqlCommand("SELECT password FROM tbUser WHERE username = '"+ username + "'", cn);
+            cm = new SqlCommand("SELECT Usr_Password FROM [User] WHERE Usr_Username = '"+ username + "'", cn);
             dr= cm.ExecuteReader();
             dr.Read();
             if(dr.HasRows)
             {
-                password = dr["password"].ToString();
+                password = dr["Usr_Password"].ToString();
             }
             dr.Close();
             cn.Close();

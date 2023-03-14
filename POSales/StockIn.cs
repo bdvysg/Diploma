@@ -100,7 +100,6 @@ namespace POSales
         {
             StockInModule stockInModule = new StockInModule();
             stockInModule.LoadDoc(dgvStockIn.Rows[e.RowIndex].Cells[1].Value.ToString());
-            stockInModule.btnUpdate.Enabled = true; 
             stockInModule.Show();
         }
 
@@ -114,6 +113,30 @@ namespace POSales
             if (e.RowIndex > -1 && dgvStockIn.Rows[e.RowIndex].Cells[6].Value.ToString() == "Підтверджено")
             {
                 e.CellStyle.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void dgvStockIn_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = dgvStockIn.Columns[e.ColumnIndex].Name;
+            if (colName == "Delete" && dgvStockIn.Rows[e.RowIndex].Cells[6].Value.ToString() != "Підтверджено")
+            {
+                if (MessageBox.Show("Видалити обране замовлення", "Видалити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cm = new SqlCommand("DELETE FROM StockIn WHERE Sti_Id = " + dgvStockIn.Rows[e.RowIndex].Cells[1].Value.ToString(), cn);
+                    cn.Open();
+                    int res = cm.ExecuteNonQuery();
+                    cn.Close();
+                    if (res > 0)
+                    {
+                        MessageBox.Show("Замовлення було успішно видалено!");
+                        LoadStockInList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Сталася помилка при видалені замовлення!");
+                    }
+                }
             }
         }
     }

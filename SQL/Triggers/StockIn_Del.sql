@@ -1,0 +1,13 @@
+CREATE OR ALTER TRIGGER StockIn_Del
+  ON StockIn
+INSTEAD OF DELETE
+AS
+BEGIN
+  DELETE 
+  FROM StockInProduct 
+  WHERE Sip_Doc IN (SELECT Sti_Id FROM deleted)
+
+  DELETE 
+  FROM StockIn 
+  WHERE Sti_Id IN (SELECT Sti_Id FROM deleted)
+END

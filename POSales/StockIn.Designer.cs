@@ -35,7 +35,7 @@ namespace POSales
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvStockIn = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +43,7 @@ namespace POSales
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsConfirmed = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockIn)).BeginInit();
             this.SuspendLayout();
@@ -101,14 +102,15 @@ namespace POSales
             this.dgvStockIn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStockIn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStockIn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
+            this.numer,
             this.Column1,
             this.Column6,
             this.Column4,
             this.Column2,
             this.Column3,
             this.Column7,
-            this.IsConfirmed});
+            this.IsConfirmed,
+            this.Delete});
             this.dgvStockIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStockIn.EnableHeadersVisualStyles = false;
             this.dgvStockIn.Location = new System.Drawing.Point(0, 0);
@@ -116,16 +118,17 @@ namespace POSales
             this.dgvStockIn.RowHeadersVisible = false;
             this.dgvStockIn.Size = new System.Drawing.Size(1163, 487);
             this.dgvStockIn.TabIndex = 4;
+            this.dgvStockIn.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStockIn_CellContentClick);
             this.dgvStockIn.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStockIn_CellDoubleClick);
             this.dgvStockIn.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvStockIn_CellPainting);
             // 
-            // Column5
+            // numer
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "№";
-            this.Column5.MinimumWidth = 50;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 50;
+            this.numer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.numer.HeaderText = "№";
+            this.numer.MinimumWidth = 50;
+            this.numer.Name = "numer";
+            this.numer.Width = 50;
             // 
             // Column1
             // 
@@ -177,6 +180,14 @@ namespace POSales
             this.IsConfirmed.Name = "IsConfirmed";
             this.IsConfirmed.Width = 20;
             // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.MinimumWidth = 20;
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 20;
+            // 
             // StockIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -203,7 +214,7 @@ namespace POSales
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvStockIn;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -211,5 +222,6 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewImageColumn IsConfirmed;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
     }
 }

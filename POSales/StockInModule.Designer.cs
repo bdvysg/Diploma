@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockInModule));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.updQuantity = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -53,9 +55,9 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.updQuantity = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnPrintStockIn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockInProducts)).BeginInit();
@@ -64,6 +66,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnPrintStockIn);
             this.panel1.Controls.Add(this.btnConfirm);
             this.panel1.Controls.Add(this.updQuantity);
             this.panel1.Controls.Add(this.label6);
@@ -84,6 +87,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1101, 145);
             this.panel1.TabIndex = 0;
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnConfirm.Location = new System.Drawing.Point(495, 98);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(125, 28);
+            this.btnConfirm.TabIndex = 19;
+            this.btnConfirm.Text = "Підтвердити";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // updQuantity
+            // 
+            this.updQuantity.Image = ((System.Drawing.Image)(resources.GetObject("updQuantity.Image")));
+            this.updQuantity.Location = new System.Drawing.Point(693, 58);
+            this.updQuantity.Name = "updQuantity";
+            this.updQuantity.Size = new System.Drawing.Size(35, 36);
+            this.updQuantity.TabIndex = 18;
+            this.updQuantity.UseVisualStyleBackColor = true;
+            this.updQuantity.Click += new System.EventHandler(this.updQuantity_Click);
             // 
             // label6
             // 
@@ -290,6 +314,7 @@
             this.Column2,
             this.Column4,
             this.Column3,
+            this.Column5,
             this.Delete});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -346,6 +371,12 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 93;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Ціна";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
             // Delete
             // 
             this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -356,26 +387,18 @@
             this.Delete.ReadOnly = true;
             this.Delete.Width = 20;
             // 
-            // updQuantity
+            // btnPrintStockIn
             // 
-            this.updQuantity.Image = ((System.Drawing.Image)(resources.GetObject("updQuantity.Image")));
-            this.updQuantity.Location = new System.Drawing.Point(693, 58);
-            this.updQuantity.Name = "updQuantity";
-            this.updQuantity.Size = new System.Drawing.Size(35, 36);
-            this.updQuantity.TabIndex = 18;
-            this.updQuantity.UseVisualStyleBackColor = true;
-            this.updQuantity.Click += new System.EventHandler(this.updQuantity_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnConfirm.Location = new System.Drawing.Point(495, 98);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(125, 28);
-            this.btnConfirm.TabIndex = 19;
-            this.btnConfirm.Text = "Підтвердити";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.btnPrintStockIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintStockIn.FlatAppearance.BorderSize = 0;
+            this.btnPrintStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintStockIn.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintStockIn.Image")));
+            this.btnPrintStockIn.Location = new System.Drawing.Point(747, 95);
+            this.btnPrintStockIn.Name = "btnPrintStockIn";
+            this.btnPrintStockIn.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintStockIn.TabIndex = 16;
+            this.btnPrintStockIn.UseVisualStyleBackColor = true;
+            this.btnPrintStockIn.Click += new System.EventHandler(this.btnPrintStockIn_Click);
             // 
             // StockInModule
             // 
@@ -417,12 +440,14 @@
         public System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView dgvStockInProducts;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button updQuantity;
+        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
-        private System.Windows.Forms.Button updQuantity;
-        private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Button btnPrintStockIn;
     }
 }

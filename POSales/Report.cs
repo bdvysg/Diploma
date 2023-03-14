@@ -107,5 +107,71 @@ namespace POSales
             Marshal.ReleaseComObject(workbook);
             Marshal.ReleaseComObject(excelApp);
         }
+
+        public void GenerateStockInDoc(SqlDataReader dr)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.ActiveSheet;
+
+            worksheet.Cells[2, 2] = "Продавець:";
+            worksheet.Range["B2"].Font.Bold = true;
+            worksheet.Range["B2"].Font.Underline = true;
+            worksheet.Range["C2:E2"].Merge();
+
+            worksheet.Cells[3, 2] = "Покупець:";
+            worksheet.Range["B3"].Font.Bold = true;
+            worksheet.Range["B3"].Font.Underline = true;
+            worksheet.Range["C3:E3"].Merge();
+
+            worksheet.Cells[5, 2] = "Номер:";
+            worksheet.Range["B5"].Font.Bold = true;
+            worksheet.Range["B5"].Font.Underline = true;
+            worksheet.Range["C5:E5"].Merge();
+
+            worksheet.Cells[6, 2] = "Примітка:";
+            worksheet.Range["B6"].Font.Bold = true;
+            worksheet.Range["B6"].Font.Underline = true;
+            worksheet.Range["C6:E6"].Merge();
+
+            worksheet.Cells[8, 1] = "No";
+            for (int i = 7; i < dr.FieldCount - 1; i++)
+            {
+                string columnName = dr.GetName(i);
+                worksheet.Cells[8, i - 5] = columnName;
+            }
+            worksheet.Range["A8:D8"].Font.Bold = true;
+            worksheet.Range["A8:D8"].Borders.Color = Color.Black;
+
+            int row = 8;
+            int j = 0;
+            while (dr.Read())
+            {
+                j++;
+                row++;
+                for (int col = 7; col < dr.FieldCount - 1; col++)
+                {
+                    worksheet.Cells[row, 1] = j.ToString();
+                    worksheet.Cells[row, col - 5] = dr[col];
+                    worksheet.Cells[row + 1, 4] = dr[10];
+                    worksheet.Columns[col - 5].AutoFit();
+
+                    worksheet.Cells[2, 3] = dr[3];
+                    worksheet.Cells[3, 3] = dr[1];
+                    worksheet.Cells[5, 3] = dr[0];
+                }
+            }
+            worksheet.Columns[1].AutoFit();
+            worksheet.Range["A9:D" + row].Borders.Color = Color.Black;
+
+            worksheet.Range["D" + (row + 1)].Font.Bold = true;
+            worksheet.Range["D" + (row + 1)].Borders.Color = Color.Black;
+
+            excelApp.Visible = true;
+
+            Marshal.ReleaseComObject(worksheet);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(excelApp);
+        }
     }
 }

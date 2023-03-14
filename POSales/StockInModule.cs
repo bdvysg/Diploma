@@ -17,12 +17,14 @@ namespace POSales
         SqlCommand cm = new SqlCommand();
         DBConnect dbcon = new DBConnect();
         SqlDataReader dr;
+        string _id;
 
         public StockInModule()
         {
             InitializeComponent();
             LoadSupplier();
             cn = new SqlConnection(dbcon.myConnection());
+            btnUpdate.Enabled = true;
         }
 
         public void LoadSupplier()
@@ -37,6 +39,7 @@ namespace POSales
         {
             dgvStockInProducts.Rows.Clear();
             int i = 0;
+            _id = id;
             try
             {
                 dgvStockInProducts.Rows.Clear();
@@ -52,7 +55,8 @@ namespace POSales
                             i++;
                             dgvStockInProducts.Rows.Add(i, dr[6].ToString(),
                                                            dr[7].ToString(),
-                                                           dr[8].ToString()
+                                                           dr[8].ToString(),
+                                                           dr[9].ToString()
                                                         );
                         }
                         cbSuppliers.Text = dr[3].ToString();
@@ -250,6 +254,15 @@ namespace POSales
                 LoadDoc(textBox1.Text);
             }
 
+        }
+
+        private void btnPrintStockIn_Click(object sender, EventArgs e)
+        {
+            cm = new SqlCommand("exec GetStockInInfo " + _id, cn);
+            cn.Open();
+            dr = cm.ExecuteReader();
+            Report report = new Report();
+            report.GenerateStockInDoc(dr);
         }
     }
 }

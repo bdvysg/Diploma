@@ -196,7 +196,25 @@ namespace POSales
 
         private void btnPrintTopSell_Click(object sender, EventArgs e)
         {
-        
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetTopSellingProducts @startDate, @endDate, 10", cn);
+                cm.Parameters.AddWithValue("@startDate", dtFromTopSell.Value.ToString("yyyyMMdd"));
+                cm.Parameters.AddWithValue("@endDate", dtToTopSell.Value.ToString("yyyyMMdd"));
+                dr = cm.ExecuteReader();
+                Report report = new Report();
+                report.GenerateReport("Топ продаж товарів з " + dtFromTopSell.Value.ToString("d") + " по " + dtToTopSell.Value.ToString("d"), dr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
         }
 
         private void btnPrintInventoryList_Click(object sender, EventArgs e)

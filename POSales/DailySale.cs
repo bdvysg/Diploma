@@ -58,7 +58,7 @@ namespace POSales
             }
             else
             {
-                cm = new SqlCommand("select c.Crt_Id, c.Crt_Transno, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total, Emp_Name + ' ' + Emp_Surname as Cashier from Cart as c inner join Employee ON Emp_Id = Crt_Employee inner join Product as p on c.Crt_Product = p.Pr_Id where status = 2 and Crt_Date between '" + dtFrom.Value + "' and '" + dtTo.Value + "'" + " and Cashier like '" + cboCashier.Text + "'", cn);
+                cm = new SqlCommand("select c.Crt_Id, c.Crt_Transno, c.Crt_Product, p.Pr_Title, c.Crt_Price, c.Crt_Qty, c.Crt_Discount, c.Crt_Total, Emp_Name + ' ' + Emp_Surname as Cashier from Cart as c inner join Employee ON Emp_Id = Crt_Cashier inner join Product as p on c.Crt_Product = p.Pr_Id where Crt_Status = 2 and Crt_Date between '" + dtFrom.Value + "' and '" + dtTo.Value + "'" + " and Emp_Name + ' ' + Emp_Surname = '" + cboCashier.Text + "'", cn);
             }
             dr = cm.ExecuteReader();
             while(dr.Read())

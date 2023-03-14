@@ -29,25 +29,29 @@ namespace POSales
         {
             int i = 0;
             dgvTopSelling.Rows.Clear();
-            cn.Open();
 
-            //Sort By Total Amount
-            if (cbTopSell.Text == "Sort By Qty")
+            try
             {
-                cm = new SqlCommand("SELECT TOP 10 pcode, pdesc, isnull(sum(qty),0) AS qty, ISNULL(SUM(total),0) AS total FROM vwTopSelling WHERE sdate BETWEEN '" + dtFromTopSell.Value.ToString() + "' AND '" + dtToTopSell.Value.ToString() + "' AND status LIKE 'Sold' GROUP BY pcode, pdesc ORDER BY qty DESC", cn);
+                cn.Open();
+                cm = new SqlCommand("exec GetTopSellingProducts @startDate, @endDate, 10", cn);
+                cm.Parameters.AddWithValue("@startDate", dtFromTopSell.Value.ToString("yyyyMMdd"));
+                cm.Parameters.AddWithValue("@endDate", dtToTopSell.Value.ToString("yyyyMMdd"));
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvTopSelling.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                }
             }
-            else if (cbTopSell.Text == "Sort By Total Amount")
+            catch(Exception ex)
             {
-                cm = new SqlCommand("SELECT TOP 10 pcode, pdesc, isnull(sum(qty),0) AS qty, ISNULL(SUM(total),0) AS total FROM vwTopSelling WHERE sdate BETWEEN '" + dtFromTopSell.Value.ToString() + "' AND '" + dtToTopSell.Value.ToString() + "' AND status LIKE 'Sold' GROUP BY pcode, pdesc ORDER BY total DESC", cn);
+                MessageBox.Show(ex.Message);
             }
-            dr = cm.ExecuteReader();
-            while(dr.Read())
+            finally
             {
-                i++;
-                dgvTopSelling.Rows.Add(i, dr["pcode"].ToString(), dr["pdesc"].ToString(), dr["qty"].ToString(), double.Parse(dr["total"].ToString()).ToString("#,##0.00"));
+                dr.Close();
+                cn.Close();
             }
-            dr.Close();
-            cn.Close();
         }
 
         public void LoadSoldItems()
@@ -164,12 +168,6 @@ namespace POSales
 
         private void btnLoadTopSell_Click(object sender, EventArgs e)
         {
-            if(cbTopSell.Text== "Select sort type")
-            {
-                MessageBox.Show("Please select sort type from the dropdown list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cbTopSell.Focus();
-                return;
-            }
             LoadTopSelling();
         }
 
@@ -198,17 +196,7 @@ namespace POSales
 
         private void btnPrintTopSell_Click(object sender, EventArgs e)
         {
-            POSReport report = new POSReport();
-            string param = "From : " + dtFromTopSell.Value.ToString() + " To : " + dtToTopSell.Value.ToString();
-            if (cbTopSell.Text == "Sort By Qty")
-            {
-                report.LoadTopSelling("SELECT TOP 10 pcode, pdesc, isnull(sum(qty),0) AS qty, ISNULL(SUM(total),0) AS total FROM vwTopSelling WHERE sdate BETWEEN '" + dtFromTopSell.Value.ToString() + "' AND '" + dtToTopSell.Value.ToString() + "' AND status LIKE 'Sold' GROUP BY pcode, pdesc ORDER BY qty DESC", param, "TOP SELLING ITEMS SORT BY QTY");
-            }
-            else if (cbTopSell.Text == "Sort By Total Amount")
-            {
-                report.LoadTopSelling("SELECT TOP 10 pcode, pdesc, isnull(sum(qty),0) AS qty, ISNULL(SUM(total),0) AS total FROM vwTopSelling WHERE sdate BETWEEN '" + dtFromTopSell.Value.ToString() + "' AND '" + dtToTopSell.Value.ToString() + "' AND status LIKE 'Sold' GROUP BY pcode, pdesc ORDER BY total DESC", param, "TOP SELLING ITEMS SORY BY TOTAL AMOUNT");
-            }
-            report.ShowDialog();
+        
         }
 
         private void btnPrintInventoryList_Click(object sender, EventArgs e)

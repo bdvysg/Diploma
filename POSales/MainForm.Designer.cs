@@ -38,7 +38,6 @@ namespace POSales
             this.btnSetting = new System.Windows.Forms.Button();
             this.panelSubRecord = new System.Windows.Forms.Panel();
             this.btnPosRecord = new System.Windows.Forms.Button();
-            this.btnSaleHist = new System.Windows.Forms.Button();
             this.btnRecord = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.panelSubStock = new System.Windows.Forms.Panel();
@@ -96,7 +95,7 @@ namespace POSales
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(0, 845);
+            this.btnLogout.Location = new System.Drawing.Point(0, 800);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnLogout.Size = new System.Drawing.Size(183, 45);
@@ -112,7 +111,7 @@ namespace POSales
             this.panelSubSetting.Controls.Add(this.btnStore);
             this.panelSubSetting.Controls.Add(this.btnUser);
             this.panelSubSetting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubSetting.Location = new System.Drawing.Point(0, 755);
+            this.panelSubSetting.Location = new System.Drawing.Point(0, 710);
             this.panelSubSetting.Name = "panelSubSetting";
             this.panelSubSetting.Size = new System.Drawing.Size(183, 90);
             this.panelSubSetting.TabIndex = 8;
@@ -155,7 +154,7 @@ namespace POSales
             this.btnSetting.FlatAppearance.BorderSize = 0;
             this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetting.ForeColor = System.Drawing.Color.White;
-            this.btnSetting.Location = new System.Drawing.Point(0, 710);
+            this.btnSetting.Location = new System.Drawing.Point(0, 665);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnSetting.Size = new System.Drawing.Size(183, 45);
@@ -169,11 +168,10 @@ namespace POSales
             // 
             this.panelSubRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(200)))));
             this.panelSubRecord.Controls.Add(this.btnPosRecord);
-            this.panelSubRecord.Controls.Add(this.btnSaleHist);
             this.panelSubRecord.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSubRecord.Location = new System.Drawing.Point(0, 620);
             this.panelSubRecord.Name = "panelSubRecord";
-            this.panelSubRecord.Size = new System.Drawing.Size(183, 90);
+            this.panelSubRecord.Size = new System.Drawing.Size(183, 45);
             this.panelSubRecord.TabIndex = 6;
             // 
             // btnPosRecord
@@ -182,7 +180,7 @@ namespace POSales
             this.btnPosRecord.FlatAppearance.BorderSize = 0;
             this.btnPosRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPosRecord.ForeColor = System.Drawing.Color.White;
-            this.btnPosRecord.Location = new System.Drawing.Point(0, 45);
+            this.btnPosRecord.Location = new System.Drawing.Point(0, 0);
             this.btnPosRecord.Name = "btnPosRecord";
             this.btnPosRecord.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnPosRecord.Size = new System.Drawing.Size(183, 45);
@@ -191,22 +189,6 @@ namespace POSales
             this.btnPosRecord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPosRecord.UseVisualStyleBackColor = true;
             this.btnPosRecord.Click += new System.EventHandler(this.btnPosRecord_Click);
-            // 
-            // btnSaleHist
-            // 
-            this.btnSaleHist.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSaleHist.FlatAppearance.BorderSize = 0;
-            this.btnSaleHist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaleHist.ForeColor = System.Drawing.Color.White;
-            this.btnSaleHist.Location = new System.Drawing.Point(0, 0);
-            this.btnSaleHist.Name = "btnSaleHist";
-            this.btnSaleHist.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnSaleHist.Size = new System.Drawing.Size(183, 45);
-            this.btnSaleHist.TabIndex = 4;
-            this.btnSaleHist.Text = "Історія продаж";
-            this.btnSaleHist.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaleHist.UseVisualStyleBackColor = true;
-            this.btnSaleHist.Click += new System.EventHandler(this.btnSaleHist_Click);
             // 
             // btnRecord
             // 
@@ -525,7 +507,6 @@ namespace POSales
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.Panel panelSubRecord;
         private System.Windows.Forms.Button btnPosRecord;
-        private System.Windows.Forms.Button btnSaleHist;
         private System.Windows.Forms.Button btnRecord;
         private System.Windows.Forms.Button btnSupplier;
         private System.Windows.Forms.Panel panelSubStock;

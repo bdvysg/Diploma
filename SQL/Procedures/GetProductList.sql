@@ -10,6 +10,7 @@ BEGIN
          b.Br_Title, 
          p.Pr_BarCode, 
          c.Catg_Title, 
+         p.Pr_PriceOpt,
          p.Pr_Price, 
          p.Pr_Reorder,
          OnStk_Quantity

@@ -32,7 +32,7 @@ namespace POSales
             i = 0;
             StartIndex = 0;
             dgvProduct.Rows.Clear();
-            cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text+ "', " + StartIndex.ToString() + ", " + RowCount.ToString(),cn);
+            cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text+ "', " + StartIndex.ToString() + ", " + 50,cn);
             cn.Open();
             dr = cm.ExecuteReader();
             while (dr.Read())
@@ -46,7 +46,8 @@ namespace POSales
                                        dr[5].ToString(),
                                        dr[6].ToString(),
                                        dr[7].ToString(),
-                                       dr[8].ToString()
+                                       dr[8].ToString(),
+                                       dr[9].ToString()
                                     ); 
             }
             dr.Close();
@@ -74,7 +75,8 @@ namespace POSales
                                            dr[5].ToString(),
                                            dr[6].ToString(),
                                            dr[7].ToString(),
-                                           dr[8].ToString()
+                                           dr[8].ToString(),
+                                           dr[9].ToString()
 
                                         );
                 }

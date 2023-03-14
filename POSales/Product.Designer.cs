@@ -32,6 +32,10 @@ namespace POSales
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
             this.dgvProduct = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,14 +44,11 @@ namespace POSales
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearch = new MetroFramework.Controls.MetroTextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +77,7 @@ namespace POSales
             this.Column9,
             this.Column6,
             this.Column7,
+            this.Column11,
             this.Column8,
             this.Column10,
             this.Edit,
@@ -89,91 +91,6 @@ namespace POSales
             this.dgvProduct.TabIndex = 3;
             this.dgvProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellContentClick);
             this.dgvProduct.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvProduct_Scroll);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "№";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 48;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Код товару";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 115;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Назва";
-            this.Column3.MinimumWidth = 150;
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Кількість";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 93;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Виробник";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 106;
-            // 
-            // Column9
-            // 
-            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column9.HeaderText = "Штрих-код";
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 111;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.HeaderText = "Категорія";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 102;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column7.HeaderText = "Ціна";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 65;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column8.HeaderText = "Критичний залишок";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 178;
-            // 
-            // Column10
-            // 
-            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column10.HeaderText = "Залишок";
-            this.Column10.Name = "Column10";
-            // 
-            // Edit
-            // 
-            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Edit.HeaderText = "";
-            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
-            this.Edit.Name = "Edit";
-            this.Edit.Width = 5;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.Name = "Delete";
-            this.Delete.Width = 5;
             // 
             // panel1
             // 
@@ -251,6 +168,96 @@ namespace POSales
             this.label1.Text = "Перегляд товарів";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "№";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 48;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Код товару";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 115;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.HeaderText = "Назва";
+            this.Column3.MinimumWidth = 150;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Кількість";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 93;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.HeaderText = "Виробник";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 106;
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column9.HeaderText = "Штрих-код";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 111;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column6.HeaderText = "Категорія";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 102;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column7.HeaderText = "Ціна опт.";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 98;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Ціна різн.";
+            this.Column11.Name = "Column11";
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column8.HeaderText = "Критичний залишок";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 178;
+            // 
+            // Column10
+            // 
+            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column10.HeaderText = "Залишок";
+            this.Column10.Name = "Column10";
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Edit.HeaderText = "";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.Name = "Edit";
+            this.Edit.Width = 5;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 5;
+            // 
             // Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -285,6 +292,7 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewImageColumn Edit;

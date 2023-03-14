@@ -48,11 +48,13 @@ namespace POSales
             this.txtPrName = new System.Windows.Forms.TextBox();
             this.cboBrand = new System.Windows.Forms.ComboBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtPriceOpt = new System.Windows.Forms.TextBox();
             this.UDReOrder = new System.Windows.Forms.NumericUpDown();
             this.imgProduct = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.txtPriceRozn = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UDReOrder)).BeginInit();
@@ -202,9 +204,9 @@ namespace POSales
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(393, 268);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 20);
+            this.label7.Size = new System.Drawing.Size(121, 20);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Ціна :";
+            this.label7.Text = "Ціна опт/розн.:";
             // 
             // label8
             // 
@@ -250,13 +252,13 @@ namespace POSales
             this.cboCategory.Size = new System.Drawing.Size(531, 28);
             this.cboCategory.TabIndex = 14;
             // 
-            // txtPrice
+            // txtPriceOpt
             // 
-            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(524, 265);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(194, 26);
-            this.txtPrice.TabIndex = 15;
+            this.txtPriceOpt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPriceOpt.Location = new System.Drawing.Point(524, 265);
+            this.txtPriceOpt.Name = "txtPriceOpt";
+            this.txtPriceOpt.Size = new System.Drawing.Size(77, 26);
+            this.txtPriceOpt.TabIndex = 15;
             // 
             // UDReOrder
             // 
@@ -307,16 +309,36 @@ namespace POSales
             this.txtQuantity.Size = new System.Drawing.Size(194, 26);
             this.txtQuantity.TabIndex = 19;
             // 
+            // txtPriceRozn
+            // 
+            this.txtPriceRozn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPriceRozn.Location = new System.Drawing.Point(625, 265);
+            this.txtPriceRozn.Name = "txtPriceRozn";
+            this.txtPriceRozn.Size = new System.Drawing.Size(77, 26);
+            this.txtPriceRozn.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(605, 269);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(16, 20);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "/";
+            // 
             // ProductModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 366);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtPriceRozn);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.imgProduct);
             this.Controls.Add(this.UDReOrder);
-            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.txtPriceOpt);
             this.Controls.Add(this.cboCategory);
             this.Controls.Add(this.cboBrand);
             this.Controls.Add(this.btnSave);
@@ -368,7 +390,7 @@ namespace POSales
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox txtBarcode;
         public System.Windows.Forms.TextBox txtPrName;
-        public System.Windows.Forms.TextBox txtPrice;
+        public System.Windows.Forms.TextBox txtPriceOpt;
         public System.Windows.Forms.ComboBox cboBrand;
         public System.Windows.Forms.ComboBox cboCategory;
         public System.Windows.Forms.NumericUpDown UDReOrder;
@@ -376,5 +398,7 @@ namespace POSales
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtQuantity;
         public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtPriceRozn;
+        private System.Windows.Forms.Label label10;
     }
 }

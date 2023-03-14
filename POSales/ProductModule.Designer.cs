@@ -289,6 +289,7 @@ namespace POSales
             this.imgProduct.Location = new System.Drawing.Point(30, 64);
             this.imgProduct.Name = "imgProduct";
             this.imgProduct.Size = new System.Drawing.Size(281, 281);
+            this.imgProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgProduct.TabIndex = 17;
             this.imgProduct.TabStop = false;
             // 

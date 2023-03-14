@@ -61,7 +61,7 @@ namespace POSales
                     txtPriceRozn.Text = dr[5].ToString();
                     txtQuantity.Text = dr[7].ToString();
                     UDReOrder.Value = int.Parse(dr[8].ToString());
-                    //imgProduct.Image = Image.FromFile("C:/base/stud/actual/Supermarket CRM/SQL/Insert/images/" + dr[12].ToString());
+                    imgProduct.Load(dr[11].ToString());
                 }
             }
             catch (Exception ex) 

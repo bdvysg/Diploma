@@ -121,5 +121,11 @@ namespace POSales
                 btnLogin.PerformClick();
             }
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Report report = new Report();
+            report.TopSellingProduct();
+        }
     }
 }

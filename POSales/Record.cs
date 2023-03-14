@@ -22,7 +22,6 @@ namespace POSales
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
             LoadCriticalItems();
-            LoadInventoryList();
         }
 
         public void LoadTopSelling()
@@ -54,35 +53,6 @@ namespace POSales
             }
         }
 
-        public void LoadSoldItems()
-        {
-            try
-            {
-                dgvSoldItems.Rows.Clear();
-                int i = 0;
-                cn.Open();
-                cm = new SqlCommand("SELECT c.pcode, p.pdesc, c.price, sum(c.qty) as qty, SUM(c.disc) AS disc, SUM(c.total) AS total FROM tbCart AS c INNER JOIN tbProduct AS p ON c.pcode=p.pcode WHERE status LIKE 'Sold' AND sdate BETWEEN '" + dtFromSoldItems.Value.ToString() + "' AND '" + dtToSoldItems.Value.ToString() + "' GROUP BY c.pcode, p.pdesc, c.price",cn);
-                dr = cm.ExecuteReader();
-                while (dr.Read())
-                {
-                    i++;
-                    dgvSoldItems.Rows.Add(i, dr["pcode"].ToString(), dr["pdesc"].ToString(), double.Parse(dr["price"].ToString()).ToString("#,##0.00"), dr["qty"].ToString(), dr["disc"].ToString(), double.Parse(dr["total"].ToString()).ToString("#,##0.00"));
-                }
-                dr.Close();
-                cn.Close();
-
-                cn.Open();
-                cm = new SqlCommand("SELECT ISNULL(SUM(total),0) FROM tbCart WHERE status LIKE 'Sold' AND sdate BETWEEN '" + dtFromSoldItems.Value.ToString() + "' AND '" + dtToSoldItems.Value.ToString() + "'", cn);
-                lblTotal.Text = double.Parse(cm.ExecuteScalar().ToString()).ToString("#,##0.00");
-                cn.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         public void LoadCriticalItems()
         {
             try
@@ -90,12 +60,12 @@ namespace POSales
                 dgvCriticalItems.Rows.Clear();
                 int i = 0;
                 cn.Open();
-                cm = new SqlCommand("SELECT * FROM vwCriticalItems",cn);
+                cm = new SqlCommand("exec GetListOfCriticalItems", cn);
                 dr = cm.ExecuteReader();
                 while(dr.Read())
                 {
                     i++;
-                    dgvCriticalItems.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                    dgvCriticalItems.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
 
                 }
                 dr.Close();
@@ -107,49 +77,6 @@ namespace POSales
                 MessageBox.Show(ex.Message);
             }
         }
-
-        public void LoadInventoryList()
-        {
-            try
-            {
-                dgvInventoryList.Rows.Clear();
-                int i = 0;
-                cn.Open();
-                cm = new SqlCommand("SELECT * FROM vwInventoryList", cn);
-                dr = cm.ExecuteReader();
-                while (dr.Read())
-                {
-                    i++;
-                    dgvInventoryList.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
-
-                }
-                dr.Close();
-                cn.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        public void LoadCancelItems()
-        {
-            int i = 0;
-            dgvCancel.Rows.Clear();
-            cn.Open();
-            cm = new SqlCommand("SELECT * FROM vwCancelItems WHERE sdate BETWEEN '" + dtFromCancel.Value.ToString() + "' AND '" + dtToCancel.Value.ToString() + "'", cn);
-            dr = cm.ExecuteReader();
-            while(dr.Read())
-            {
-                i++;
-                dgvCancel.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(),  DateTime.Parse(dr[6].ToString()).ToShortDateString(), dr[7].ToString(), dr[8].ToString(), dr[9].ToString(), dr[10].ToString());
-            }
-            dr.Close();
-            cn.Close();
-        }
-
         public void LoadStockInHist()
         {
             int i = 0;
@@ -169,24 +96,6 @@ namespace POSales
         private void btnLoadTopSell_Click(object sender, EventArgs e)
         {
             LoadTopSelling();
-        }
-
-        private void btnLoadSoldItems_Click(object sender, EventArgs e)
-        {
-            LoadSoldItems();
-        }
-
-        private void btnPrintSoldItems_Click(object sender, EventArgs e)
-        {
-            POSReport report = new POSReport();
-            string param = "From : " + dtFromSoldItems.Value.ToString() + " To : " + dtToSoldItems.Value.ToString();
-            report.LoadSoldItems("SELECT c.pcode, p.pdesc, c.price, sum(c.qty) as qty, SUM(c.disc) AS disc, SUM(c.total) AS total FROM tbCart AS c INNER JOIN tbProduct AS p ON c.pcode=p.pcode WHERE status LIKE 'Sold' AND sdate BETWEEN '" + dtFromSoldItems.Value.ToString() + "' AND '" + dtToSoldItems.Value.ToString() + "' GROUP BY c.pcode, p.pdesc, c.price",param);
-            report.ShowDialog();
-        }
-
-        private void btnLoadCancel_Click(object sender, EventArgs e)
-        {
-            LoadCancelItems();
         }
 
         private void btnLoadStockIn_Click(object sender, EventArgs e)
@@ -224,13 +133,6 @@ namespace POSales
             report.ShowDialog();
         }
 
-        private void btnPrintCancel_Click(object sender, EventArgs e)
-        {
-            POSReport report = new POSReport();
-            string param = "From : " + dtFromCancel.Value.ToString() + " To : " + dtToCancel.Value.ToString();
-            report.LoadCancelledOrder("SELECT * FROM vwCancelItems WHERE sdate BETWEEN '" + dtFromCancel.Value.ToString() + "' AND '" + dtToCancel.Value.ToString() + "'", param);
-            report.ShowDialog();
-        }
 
         private void btnPrintStockIn_Click(object sender, EventArgs e)
         {
@@ -238,6 +140,27 @@ namespace POSales
             string param = "From : " + dtFromStockIn.Value.ToString() + " To : " + dtToStockIn.Value.ToString();
             report.LoadStockInHist("SELECT * FROM vwStockIn WHERE cast(sdate AS date) BETWEEN '" + dtFromStockIn.Value.ToString() + "' AND '" + dtToStockIn.Value.ToString() + "' AND status LIKE 'Done'", param);
             report.ShowDialog();
+        }
+
+        private void btnPrintCriticalItems_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetListOfCriticalItems", cn);
+                dr = cm.ExecuteReader();
+                Report report = new Report();
+                report.GenerateReport("Список критичних залишків", dr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ CREATE OR ALTER PROCEDURE GetReceiptInfo
   @transno varchar(50)
 AS
 BEGIN
-  SELECT Pr_Title AS [Назва],
+  SELECT Pr_Title AS [Товар],
          Crt_Price AS [Ціна],
          Crt_Qty AS [Кількість],
          Crt_Disc_percent AS [Знижка %],
@@ -14,7 +14,8 @@ BEGIN
          Crt_Transno AS [Номер чеку],
          Emp_Name + ' ' + Emp_SurName AS [Касир],
          (SELECT Str_Title FROM Store) AS [Магазин],
-         (SELECT [address] FROM Store) AS [Адреса]
+         (SELECT [address] FROM Store) AS [Адреса],
+         Crt_Date AS [Дата]
   FROM Cart
   INNER JOIN Product
     ON Pr_Id = Crt_Product

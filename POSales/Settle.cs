@@ -15,7 +15,8 @@ namespace POSales
     {
         SqlConnection cn = new SqlConnection();
         SqlCommand cm = new SqlCommand();
-        DBConnect dbcon = new DBConnect();        
+        DBConnect dbcon = new DBConnect();
+        SqlDataReader dr;
         Cashier cashier;
         public Settle(Cashier cash)
         {
@@ -109,11 +110,10 @@ namespace POSales
                         cm.ExecuteNonQuery();
                         cn.Close();
                     }
-                    Recept recept = new Recept(cashier);
-                    recept.LoadRecept(txtCash.Text, txtChange.Text);
-                    recept.ShowDialog();
+                    
 
                     MessageBox.Show("Оплата успішно прошла!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PrintRecept();
                     cashier.GetTranNo();
                     cashier.LoadCart();
                     this.Dispose();
@@ -144,6 +144,17 @@ namespace POSales
         {
             if (e.KeyCode == Keys.Escape) this.Dispose();
             else if (e.KeyCode == Keys.Enter) btnEnter.PerformClick();            
+        }
+
+        private void PrintRecept()
+        {
+            cn.Open();
+            cm = new SqlCommand("exec GetReceiptInfo @transno", cn);
+            cm.Parameters.AddWithValue("@transno", cashier.lblTranNo.Text);
+            dr = cm.ExecuteReader();
+
+            Report report = new Report();
+            report.GenerateReceipt(dr);
         }
     }
 }

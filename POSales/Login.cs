@@ -124,8 +124,13 @@ namespace POSales
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            cn.Open();
+            cm = new SqlCommand("exec GetReceiptInfo @transno", cn);
+            cm.Parameters.AddWithValue("@transno", "202303131008");
+            dr = cm.ExecuteReader();
+
             Report report = new Report();
-            report.TopSellingProduct();
+            report.GenerateReceipt(dr);
         }
     }
 }

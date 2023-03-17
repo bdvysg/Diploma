@@ -22,6 +22,7 @@ namespace POSales
             InitializeComponent();
             cn = new SqlConnection(dbcon.myConnection());
             LoadCriticalItems();
+            LoadEmployees();
         }
 
         public void LoadTopSelling()
@@ -165,6 +166,31 @@ namespace POSales
             StockInModule stockInModule = new StockInModule();
             stockInModule.LoadDoc(dgvStockIn.Rows[e.RowIndex].Cells[1].Value.ToString());
             stockInModule.Show();
+        }
+
+        private void LoadEmployees()
+        {
+            int i = 0;
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetEmployeeList", cn);
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvEmployees.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
         }
     }
 }

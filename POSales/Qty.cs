@@ -92,12 +92,11 @@ namespace POSales
                             return;
                         }
                         cn.Open();
-                        cm = new SqlCommand("INSERT INTO Cart(Crt_Transno, Crt_Product, Crt_Price, Crt_Qty, Crt_Date, Crt_Cashier) VALUES(@transno, @pcode, @price, @qty, @sdate, (SELECT TOP 1 Emp_Id FROM Employee INNER JOIN [User] ON Emp_Id = Usr_Employee WHERE Usr_Username = '" + cashier.lblUsername.Text + "'))", cn);
+                        cm = new SqlCommand("INSERT INTO Cart(Crt_Transno, Crt_Product, Crt_Price, Crt_Qty, Crt_Cashier) VALUES(@transno, @pcode, @price, @qty, (SELECT TOP 1 Emp_Id FROM Employee INNER JOIN [User] ON Emp_Id = Usr_Employee WHERE Usr_Username = '" + cashier.lblUsername.Text + "'))", cn);
                         cm.Parameters.AddWithValue("@transno", transno);
                         cm.Parameters.AddWithValue("@pcode", pcode);
                         cm.Parameters.AddWithValue("@price", price);
                         cm.Parameters.AddWithValue("@qty", int.Parse(txtQty.Text));
-                        cm.Parameters.AddWithValue("@sdate", DateTime.Now);
                         cm.ExecuteNonQuery();
                         cn.Close();
                         cashier.txtBarcode.Clear();

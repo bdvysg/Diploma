@@ -289,7 +289,7 @@ namespace POSales
                         return;
                     }
                     cn.Open();
-                    cm = new SqlCommand("Update tbCart set qty = (qty + " + _qty + ")Where id= '" + id + "'", cn);
+                    cm = new SqlCommand("Update Cart set Crt_Qty = (Crt_Qty + " + _qty + ")Where Crt_Id= '" + id + "'", cn);
                     cm.ExecuteReader();
                     cn.Close();
                     txtBarcode.SelectionStart = 0;

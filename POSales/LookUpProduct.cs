@@ -55,7 +55,7 @@ namespace POSales
                                            dr[3].ToString(),
                                            dr[5].ToString(),
                                            dr[6].ToString(),
-                                           dr[8].ToString()
+                                           dr[9].ToString()
                                         );
                 }
             }
@@ -116,7 +116,7 @@ namespace POSales
                                                dr[3].ToString(),
                                                dr[5].ToString(),
                                                dr[6].ToString(),
-                                               dr[8].ToString()
+                                               dr[9].ToString()
                                             );
                     }
                 }

@@ -23,6 +23,7 @@ namespace POSales
             cn = new SqlConnection(dbcon.myConnection());
             LoadCriticalItems();
             LoadEmployees();
+            LoadReceipts();
         }
 
         public void LoadTopSelling()
@@ -191,6 +192,42 @@ namespace POSales
                 dr.Close();
                 cn.Close();
             }
+        }
+
+        private void LoadReceipts()
+        {
+            int i = 0;
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetReceiptList", cn);
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvReceipts.Rows.Add(i, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
+        }
+
+        private void dgvReceipts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cn.Open();
+            cm = new SqlCommand("exec GetReceiptInfo @transno", cn);
+            cm.Parameters.AddWithValue("@transno", dgvReceipts.Rows[e.RowIndex].Cells[1].Value);
+            dr = cm.ExecuteReader();
+
+            Report report = new Report();
+            report.GenerateReceipt(dr);
         }
     }
 }

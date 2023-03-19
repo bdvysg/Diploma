@@ -219,6 +219,8 @@ namespace POSales
                     date = dr[11].ToString();
                 }
             }
+
+            dr.Close();
             worksheet.Columns[1].AutoFit();
             worksheet.Range["A6:G" + row].Borders.Color = Color.Black;
 

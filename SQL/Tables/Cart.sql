@@ -17,7 +17,7 @@ CREATE TABLE dbo.Cart(
 	Crt_Disc_Percent decimal(18, 2) NULL,
 	Crt_Discount decimal(18, 2) NULL,
 	Crt_Total decimal(18, 2) NULL,
-	Crt_Date date NULL,
+	Crt_Date datetime NULL,
 	Crt_Status int DEFAULT(1) NOT NULL,
 	Crt_Cashier int NULL,
 )

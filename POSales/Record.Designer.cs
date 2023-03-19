@@ -39,6 +39,7 @@ namespace POSales
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -97,6 +98,18 @@ namespace POSales
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dgvProfit = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnProfit = new System.Windows.Forms.Button();
+            this.btnPrintProfit = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtToProfit = new System.Windows.Forms.DateTimePicker();
+            this.dtFromProfit = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -112,6 +125,9 @@ namespace POSales
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipts)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProfit)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,10 +160,11 @@ namespace POSales
             this.metroTabControl1.Controls.Add(this.tabPage6);
             this.metroTabControl1.Controls.Add(this.tabPage4);
             this.metroTabControl1.Controls.Add(this.tabPage2);
+            this.metroTabControl1.Controls.Add(this.tabPage5);
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 3;
+            this.metroTabControl1.SelectedIndex = 5;
             this.metroTabControl1.Size = new System.Drawing.Size(1236, 590);
             this.metroTabControl1.TabIndex = 4;
             this.metroTabControl1.UseSelectable = true;
@@ -738,6 +755,142 @@ namespace POSales
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.Width = 139;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.White;
+            this.tabPage5.Controls.Add(this.dgvProfit);
+            this.tabPage5.Controls.Add(this.panel4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 38);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1228, 548);
+            this.tabPage5.TabIndex = 8;
+            this.tabPage5.Text = "Прибуток";
+            // 
+            // dgvProfit
+            // 
+            this.dgvProfit.AllowUserToAddRows = false;
+            this.dgvProfit.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProfit.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProfit.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvProfit.ColumnHeadersHeight = 30;
+            this.dgvProfit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvProfit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn18,
+            this.dataGridViewTextBoxColumn19});
+            this.dgvProfit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProfit.EnableHeadersVisualStyles = false;
+            this.dgvProfit.Location = new System.Drawing.Point(0, 69);
+            this.dgvProfit.Name = "dgvProfit";
+            this.dgvProfit.RowHeadersVisible = false;
+            this.dgvProfit.Size = new System.Drawing.Size(1228, 479);
+            this.dgvProfit.TabIndex = 5;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnProfit);
+            this.panel4.Controls.Add(this.btnPrintProfit);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.dtToProfit);
+            this.panel4.Controls.Add(this.dtFromProfit);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1228, 69);
+            this.panel4.TabIndex = 1;
+            // 
+            // btnProfit
+            // 
+            this.btnProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProfit.FlatAppearance.BorderSize = 0;
+            this.btnProfit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProfit.Image = ((System.Drawing.Image)(resources.GetObject("btnProfit.Image")));
+            this.btnProfit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProfit.Location = new System.Drawing.Point(405, 16);
+            this.btnProfit.Name = "btnProfit";
+            this.btnProfit.Size = new System.Drawing.Size(195, 36);
+            this.btnProfit.TabIndex = 16;
+            this.btnProfit.Text = "Завантажити дані";
+            this.btnProfit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProfit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProfit.UseVisualStyleBackColor = true;
+            this.btnProfit.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnPrintProfit
+            // 
+            this.btnPrintProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintProfit.FlatAppearance.BorderSize = 0;
+            this.btnPrintProfit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintProfit.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintProfit.Image")));
+            this.btnPrintProfit.Location = new System.Drawing.Point(1178, 16);
+            this.btnPrintProfit.Name = "btnPrintProfit";
+            this.btnPrintProfit.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintProfit.TabIndex = 15;
+            this.btnPrintProfit.UseVisualStyleBackColor = true;
+            this.btnPrintProfit.Click += new System.EventHandler(this.btnPrintProfit_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(238, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "до";
+            // 
+            // dtToProfit
+            // 
+            this.dtToProfit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtToProfit.Location = new System.Drawing.Point(267, 21);
+            this.dtToProfit.Name = "dtToProfit";
+            this.dtToProfit.Size = new System.Drawing.Size(104, 26);
+            this.dtToProfit.TabIndex = 1;
+            // 
+            // dtFromProfit
+            // 
+            this.dtFromProfit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFromProfit.Location = new System.Drawing.Point(128, 21);
+            this.dtFromProfit.Name = "dtFromProfit";
+            this.dtFromProfit.Size = new System.Drawing.Size(104, 26);
+            this.dtFromProfit.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Обрати дату: З";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn16.HeaderText = "№";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.Width = 48;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn18.HeaderText = "Місяць";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.Width = 84;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn19.HeaderText = "Сума";
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            // 
             // Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -768,6 +921,10 @@ namespace POSales
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipts)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProfit)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -832,5 +989,17 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DataGridView dgvProfit;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnProfit;
+        private System.Windows.Forms.Button btnPrintProfit;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtToProfit;
+        private System.Windows.Forms.DateTimePicker dtFromProfit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
     }
 }

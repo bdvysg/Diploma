@@ -229,5 +229,55 @@ namespace POSales
             Report report = new Report();
             report.GenerateReceipt(dr);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetProfit @dateStart, @dateEnd", cn);
+                cm.Parameters.AddWithValue("@dateStart", dtFromProfit.Value.ToString("yyyyMMdd"));
+                cm.Parameters.AddWithValue("@dateEnd", dtToProfit.Value.ToString("yyyyMMdd"));
+                dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    i++;
+                    dgvProfit.Rows.Add(i, dr[0].ToString(), dr[1].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
+        }
+
+        private void btnPrintProfit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cn.Open();
+                cm = new SqlCommand("exec GetProfit @dateStart, @dateEnd", cn);
+                cm.Parameters.AddWithValue("@dateStart", dtFromProfit.Value.ToString("yyyyMMdd"));
+                cm.Parameters.AddWithValue("@dateEnd", dtToProfit.Value.ToString("yyyyMMdd"));
+                dr = cm.ExecuteReader();
+                Report report = new Report();
+                report.GenerateReport("Прибуток за період: " + dtFromProfit.Value.ToString("d") + " - " + dtToProfit.Value.ToString("d"), dr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cn.Close();
+            }
+        }
     }
 }

@@ -50,9 +50,9 @@ namespace POSales
                                            dr[3].ToString(),
                                            dr[4].ToString(),
                                            dr[5].ToString(),
-                                           dr[6].ToString(),
                                            dr[7].ToString(),
-                                           dr[8].ToString()
+                                           dr[8].ToString(),
+                                           dr[9].ToString()
                                         );
                 }
             }

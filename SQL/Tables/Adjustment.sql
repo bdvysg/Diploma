@@ -13,11 +13,10 @@ CREATE TABLE dbo.Adjustment(
 	Adj_Product int NOT NULL,
 	Adj_Qty int DEFAULT (0) NOT NULL,
 	Adj_Remarks varchar(50) NULL,
-	Adj_Date date DEFAULT(GETDATE()) NOT NULL,
+	Adj_Date datetime DEFAULT(GETDATE()) NOT NULL,
 	Adj_User varchar(50) NULL,
+
+  FOREIGN KEY (Adj_Product)
+  REFERENCES Product(Pr_Id)
 ) 
 GO
-
-ALTER TABLE dbo.Adjustment
-  ADD FOREIGN KEY (Adj_Product)
-  REFERENCES Product(Pr_Id)

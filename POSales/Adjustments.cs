@@ -38,7 +38,7 @@ namespace POSales
             dgvAdjustment.Rows.Clear();
             try
             {
-                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", 50" , cn);
                 cn.Open();
                 dr = cm.ExecuteReader();
                 while (dr.Read())

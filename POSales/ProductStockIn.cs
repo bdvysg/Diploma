@@ -44,7 +44,7 @@ namespace POSales
             dgvProduct.Rows.Clear();
             try
             {
-                cm = new SqlCommand("exec GetProductsList '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
+                cm = new SqlCommand("exec GetProductsListWithCrit '" + txtSearch.Text + "', " + StartIndex.ToString() + ", " + RowCount.ToString(), cn);
                 cn.Open();
                 dr = cm.ExecuteReader();
                 while (dr.Read())
@@ -52,7 +52,8 @@ namespace POSales
                     i++;
                     dgvProduct.Rows.Add(i, dr[0].ToString(),
                                            dr[1].ToString(),
-                                           dr[8].ToString()
+                                           dr[9].ToString(),
+                                           dr[10].ToString()
                                         );
                 }
                  
@@ -148,7 +149,8 @@ namespace POSales
                         i++;
                         dgvProduct.Rows.Add(i, dr[0].ToString(),
                                                dr[1].ToString(),
-                                               dr[8].ToString()
+                                               dr[9].ToString(),
+                                               "False"
                                             );
                     }
                 }
@@ -161,6 +163,14 @@ namespace POSales
                     dr.Close();
                     cn.Close();
                 }
+            }
+        }
+
+        private void dgvProduct_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString() == "True")
+            {
+                e.CellStyle.BackColor = Color.Red;
             }
         }
     }

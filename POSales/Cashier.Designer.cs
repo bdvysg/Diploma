@@ -422,9 +422,9 @@ namespace POSales
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(6, 444);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 20);
+            this.label10.Size = new System.Drawing.Size(60, 20);
             this.label10.TabIndex = 7;
-            this.label10.Text = "Сума ПДВ :";
+            this.label10.Text = "Сума :";
             // 
             // label9
             // 

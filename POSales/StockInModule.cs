@@ -129,6 +129,7 @@ namespace POSales
                 if (res > 0)
                 {
                     MessageBox.Show("Замовлення було успішно оновлено!");
+                    btnPrintStockIn_Click(null, null);
                 }
                 else
                 {
@@ -159,6 +160,7 @@ namespace POSales
                 if (res > 0)
                 {
                     MessageBox.Show("Замовлення було успішно оновлено!");
+                    btnPrintStockIn_Click(null, null);
                 }
                 else
                 {
@@ -263,6 +265,18 @@ namespace POSales
             dr = cm.ExecuteReader();
             Report report = new Report();
             report.GenerateStockInDoc(dr);
+        }
+
+        private void dgvStockInProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4) // Замените yourCurrencyColumnIndex на индекс столбца с валютой
+            {
+                if (e.Value != null)
+                {
+                    decimal value = decimal.Parse(e.Value.ToString()); // Предполагается, что значение является числом типа decimal
+                    e.Value = value.ToString("C"); // Форматирование значения с использованием знака валюты
+                }
+            }
         }
     }
 }

@@ -130,5 +130,17 @@ namespace POSales
         {
             LoadProduct();
         }
+
+        private void dgvProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 7 || e.ColumnIndex == 8) // Замените yourCurrencyColumnIndex на индекс столбца с валютой
+            {
+                if (e.Value != null)
+                {
+                    decimal value = decimal.Parse(e.Value.ToString()); // Предполагается, что значение является числом типа decimal
+                    e.Value = value.ToString("C"); // Форматирование значения с использованием знака валюты
+                }
+            }
+        }
     }
 }

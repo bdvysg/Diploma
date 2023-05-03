@@ -22,6 +22,8 @@ namespace POSales
         int StartIndex = 0;
         int RowCount = 25;
         int i = 0;
+
+
         public Adjustments(MainForm mn)
         {
             InitializeComponent();
@@ -159,6 +161,18 @@ namespace POSales
                 }
                 dr.Close();
                 cn.Close();
+            }
+        }
+
+        private void dgvAdjustment_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 7) // Замените yourCurrencyColumnIndex на индекс столбца с валютой
+            {
+                if (e.Value != null)
+                {
+                    decimal value = decimal.Parse(e.Value.ToString()); // Предполагается, что значение является числом типа decimal
+                    e.Value = value.ToString("C"); // Форматирование значения с использованием знака валюты
+                }
             }
         }
     }

@@ -57,8 +57,8 @@ namespace POSales
                     txtPcode.Text = dr[0].ToString();
                     txtBarcode.Text = dr[1].ToString();
                     txtPrName.Text = dr[10].ToString();
-                    txtPriceOpt.Text = dr[6].ToString();
-                    txtPriceRozn.Text = dr[5].ToString();
+                    txtPriceOpt.Text = decimal.Parse(dr[6].ToString()).ToString("C");
+                    txtPriceRozn.Text = decimal.Parse(dr[5].ToString()).ToString("C");
                     txtQuantity.Text = dr[7].ToString();
                     UDReOrder.Value = int.Parse(dr[8].ToString());
                     imgProduct.Load(dr[11].ToString());

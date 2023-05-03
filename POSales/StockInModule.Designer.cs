@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockInModule));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockInModule));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrintStockIn = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.updQuantity = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnPrintStockIn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockInProducts)).BeginInit();
@@ -87,6 +87,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1101, 145);
             this.panel1.TabIndex = 0;
+            // 
+            // btnPrintStockIn
+            // 
+            this.btnPrintStockIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintStockIn.FlatAppearance.BorderSize = 0;
+            this.btnPrintStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintStockIn.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintStockIn.Image")));
+            this.btnPrintStockIn.Location = new System.Drawing.Point(747, 95);
+            this.btnPrintStockIn.Name = "btnPrintStockIn";
+            this.btnPrintStockIn.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintStockIn.TabIndex = 16;
+            this.btnPrintStockIn.UseVisualStyleBackColor = true;
+            this.btnPrintStockIn.Click += new System.EventHandler(this.btnPrintStockIn_Click);
             // 
             // btnConfirm
             // 
@@ -336,6 +349,7 @@
             this.dgvStockInProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStockInProducts_CellContentClick);
             this.dgvStockInProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStockInProducts_CellDoubleClick);
             this.dgvStockInProducts.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStockInProducts_CellEnter);
+            this.dgvStockInProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvStockInProducts_CellFormatting);
             // 
             // Column1
             // 
@@ -353,7 +367,7 @@
             this.Column2.MinimumWidth = 90;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 115;
+            this.Column2.Width = 105;
             // 
             // Column4
             // 
@@ -386,19 +400,6 @@
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             this.Delete.Width = 20;
-            // 
-            // btnPrintStockIn
-            // 
-            this.btnPrintStockIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrintStockIn.FlatAppearance.BorderSize = 0;
-            this.btnPrintStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintStockIn.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintStockIn.Image")));
-            this.btnPrintStockIn.Location = new System.Drawing.Point(747, 95);
-            this.btnPrintStockIn.Name = "btnPrintStockIn";
-            this.btnPrintStockIn.Size = new System.Drawing.Size(42, 36);
-            this.btnPrintStockIn.TabIndex = 16;
-            this.btnPrintStockIn.UseVisualStyleBackColor = true;
-            this.btnPrintStockIn.Click += new System.EventHandler(this.btnPrintStockIn_Click);
             // 
             // StockInModule
             // 

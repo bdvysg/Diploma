@@ -71,7 +71,7 @@ namespace POSales
                         MessageBox.Show("Аккаунт деактивовано адміністратором. Неможливо ввійти", "Аккаунт деактивовано", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if(_role== "Менеджер з закупівель")
+                    if(_role== "Менеджер з продаж")
                     {
                         txtName.Clear();
                         txtPass.Clear();

@@ -40,7 +40,6 @@ namespace POSales
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsConfirmed = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
@@ -107,7 +106,6 @@ namespace POSales
             this.Column6,
             this.Column4,
             this.Column2,
-            this.Column3,
             this.Column7,
             this.IsConfirmed,
             this.Delete});
@@ -157,13 +155,6 @@ namespace POSales
             this.Column2.HeaderText = "Дата ";
             this.Column2.MinimumWidth = 50;
             this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Стан";
-            this.Column3.MinimumWidth = 50;
-            this.Column3.Name = "Column3";
             // 
             // Column7
             // 
@@ -219,7 +210,6 @@ namespace POSales
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewImageColumn IsConfirmed;
         private System.Windows.Forms.DataGridViewImageColumn Delete;

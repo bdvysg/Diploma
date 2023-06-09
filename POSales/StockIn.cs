@@ -43,16 +43,16 @@ namespace POSales
                                            dr[3].ToString(),
                                            dr[1].ToString(),
                                            dr[2].ToString(),
-                                           dr[4].ToString(),
+                                           //dr[4].ToString(),
                                            dr[5].ToString()
                                         );
                     if (dr[5].ToString() == "Підтверджено")
                     {
-                        dgvStockIn.Rows[i - 1].Cells[7].Value = Image.FromFile("../../Image/open_lock.jpg");
+                        dgvStockIn.Rows[i - 1].Cells[6].Value = Image.FromFile("../../Image/open_lock.jpg");
                     }
                     else
                     {
-                        dgvStockIn.Rows[i - 1].Cells[7].Value = Image.FromFile("../../Image/locked_lock.png");
+                        dgvStockIn.Rows[i - 1].Cells[6].Value = Image.FromFile("../../Image/locked_lock.png");
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace POSales
 
         private void dgvStockIn_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex > -1 && dgvStockIn.Rows[e.RowIndex].Cells[6].Value.ToString() == "Підтверджено")
+            if (e.RowIndex > -1 && dgvStockIn.Rows[e.RowIndex].Cells[5].Value.ToString() == "Підтверджено")
             {
                 e.CellStyle.BackColor = Color.LightGreen;
             }
@@ -119,7 +119,7 @@ namespace POSales
         private void dgvStockIn_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dgvStockIn.Columns[e.ColumnIndex].Name;
-            if (colName == "Delete" && dgvStockIn.Rows[e.RowIndex].Cells[6].Value.ToString() != "Підтверджено")
+            if (colName == "Delete" && dgvStockIn.Rows[e.RowIndex].Cells[5].Value.ToString() != "Підтверджено")
             {
                 if (MessageBox.Show("Видалити обране замовлення", "Видалити", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
